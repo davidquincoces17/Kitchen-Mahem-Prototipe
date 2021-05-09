@@ -17,7 +17,7 @@ public class Fridge : MonoBehaviour
         
     }
 
-    GameObject spawnIngredient()
+    public GameObject spawnIngredient()
     {
         return Instantiate(foodPrefab,transform.position,foodPrefab.transform.rotation);
     }

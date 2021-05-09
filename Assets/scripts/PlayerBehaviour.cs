@@ -15,14 +15,28 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        inHand.transform.position = transform.position;
-    }
-        private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Meat"))
+        if (inHand)
         {
-            inHand = other.gameObject.spawnIngredient();
+            inHand.transform.position = transform.position + Vector3.up;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("MeatFridge"))
+        {
+            Fridge fridge = other.gameObject.GetComponent<Fridge>();
+            inHand = fridge.spawnIngredient().GetComponent<MeatObject>();
             Debug.Log("meat",other);
+        }
+
+        else if(other.CompareTag("Oven") && inHand)
+        {
+            Oven oven = other.gameObject.GetComponent<Oven>();
+            oven.inOven = inHand;
+            inHand = null;
+            Debug.Log("Cooking", other);
+            //oven.Cook();
         }
     }
 }
