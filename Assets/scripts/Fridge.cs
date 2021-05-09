@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class get_ingredient : MonoBehaviour
-{ 
+public class Fridge : MonoBehaviour
+{
+    public GameObject foodPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +17,8 @@ public class get_ingredient : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    GameObject spawnIngredient()
     {
-        if(other.CompareTag("Meat"))
-        {
-            Debug.Log("meat",other);
-        }
+        return Instantiate(foodPrefab,transform.position,foodPrefab.transform.rotation);
     }
 }
