@@ -22,6 +22,8 @@ TagManager:
   - Reward
   - objectiveTriangle
   - Meat
+  - MeatFridge
+  - Oven
   layers:
   - Default
   - TransparentFX

@@ -1226,3 +1226,4 @@ Received Import Request.
 Start importing Assets/Models/Smoke Puff.fbx using Guid(9125c5d57dfe5ed4f80bb53446f72bde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1d05d631c841e36c62d774c5d74aaa2c') in 0.093608 seconds
   Import took 0.130590 seconds .
 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
