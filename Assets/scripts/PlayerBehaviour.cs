@@ -25,8 +25,14 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if(other.CompareTag("MeatFridge"))
         {
+            if (inHand != null)
+            {
+                Debug.Log("kkkkkkkkkkkkkkkkkkkk");
+                inHand.DestroyMeat();
+            }
             Fridge fridge = other.gameObject.GetComponent<Fridge>();
             inHand = fridge.spawnIngredient().GetComponent<MeatObject>();
+            //Destroy(gameObject);
             Debug.Log("meat",other);
         }
 

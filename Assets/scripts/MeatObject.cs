@@ -15,4 +15,9 @@ public class MeatObject : MonoBehaviour
     {
         
     }
+
+    public void DestroyMeat()
+    {
+        Destroy(this);
+    }
 }
