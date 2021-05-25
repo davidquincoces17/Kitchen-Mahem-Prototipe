@@ -61,6 +61,14 @@ public class PlayerBehaviour : MonoBehaviour
                     fire.inOven = inHand;
                     fire.inOven.transform.position = fire.transform.position + new Vector3(0, 15, 0);
                     inHand = null;
+                    
+                    // Showing smoke
+                    var emission = fire.smoke.emission;
+                    emission.enabled = true;
+                    fire.smoke.gameObject.GetComponent<ParticleSystem>().Play();
+                    //fire.smoke.gameObject.GetComponent<ParticleSystem>().enableEmission = true;
+                    fire.smoke.transform.position = fire.transform.position + new Vector3(0, 17, 0);
+
                     Debug.Log("Cooking", other);
                     fire.startCooking();
                 }
@@ -72,6 +80,11 @@ public class PlayerBehaviour : MonoBehaviour
                     inHand = fire.inOven;
                     fire.inOven = null;
                     Destroy(fire.timer.gameObject);
+
+                    // Removing smoke
+                    var emission = fire.smoke.emission;
+                    emission.enabled = false;
+                    //fire.smoke.transform.position = fire.transform.position + new Vector3(0, 17, 0);
                 }
             }
         }

@@ -8,6 +8,7 @@ public class OvenFire : MonoBehaviour
     public Timer timer;
     public GameObject timerPrefab;
     public Vector3 offset;
+    public ParticleSystem smoke;
     // Start is called before the first frame update
     void Start()
     {
