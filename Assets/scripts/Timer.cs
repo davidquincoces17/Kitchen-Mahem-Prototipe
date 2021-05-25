@@ -12,6 +12,8 @@ public class Timer : MonoBehaviour
     private int remainingDurationBurned;
     [SerializeField] private Image uiFill;
     [SerializeField] private Text uiText;
+
+    public int state;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,7 @@ public class Timer : MonoBehaviour
 
     private void Begin(int time)
     {
+        state = 0;
         remainingDuration = time;
         StartCoroutine(UpdateTimer());
     }
@@ -44,6 +47,7 @@ public class Timer : MonoBehaviour
 
     private void OnEnd()
     {
+        state = 1;
         Debug.Log("Food completed");
         remainingDurationBurned = burnedDuration;
         uiFill.color = new Color32(255, 0, 0, 255);
@@ -64,6 +68,7 @@ public class Timer : MonoBehaviour
 
     private void OnEndBurned()
     {
+        state = 2;
         // Alert player
         Debug.Log("burned!");
         // Show extintor

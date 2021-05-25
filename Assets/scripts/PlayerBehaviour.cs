@@ -9,7 +9,7 @@ public class PlayerBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("MeatFridge"))
+        if (other.CompareTag("MeatFridge"))
         {
             if (inHand != null)
             {
@@ -51,15 +51,38 @@ public class PlayerBehaviour : MonoBehaviour
             Debug.Log("Grabbed");
         }
 
-        else if(other.CompareTag("Oven") && inHand)
+        else if (other.CompareTag("Oven"))
         {
             OvenFire fire = other.gameObject.GetComponent<OvenFire>();
-            if (!fire.inOven) {
-                fire.inOven = inHand;
-                fire.inOven.transform.position = fire.transform.position + new Vector3(0,15,0);
+            if (inHand)
+            {
+                if (inHand.state == 0 && !fire.inOven)
+                {
+                    fire.inOven = inHand;
+                    fire.inOven.transform.position = fire.transform.position + new Vector3(0, 15, 0);
+                    inHand = null;
+                    Debug.Log("Cooking", other);
+                    fire.startCooking();
+                }
+            }
+            else if (fire.inOven)
+            {
+                if (fire.inOven.state > 0)
+                {
+                    inHand = fire.inOven;
+                    fire.inOven = null;
+                    Destroy(fire.timer.gameObject);
+                }
+            }
+        }
+        else if (other.CompareTag("Counter") && inHand)
+        {
+            CounterSpace counter = other.gameObject.GetComponent<CounterSpace>();
+            if (!counter.inPreparation)
+            {
+                counter.inPreparation = inHand;
+                counter.inPreparation.transform.position = counter.transform.position + new Vector3(0, 15, 0);
                 inHand = null;
-                Debug.Log("Cooking", other);
-                fire.startCooking();
             }
         }
     }

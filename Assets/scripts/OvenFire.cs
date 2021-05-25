@@ -17,7 +17,7 @@ public class OvenFire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (inOven) { inOven.state = timer.state; }
     }
 
     public void startCooking()

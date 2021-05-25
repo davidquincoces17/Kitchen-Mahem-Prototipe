@@ -26,6 +26,7 @@ TagManager:
   - Oven
   - PastaFridge
   - Canvas
+  - Counter
   layers:
   - Default
   - TransparentFX
