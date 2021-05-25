@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Oven : MonoBehaviour
 {
-    public MeatObject inOven;
+    public OvenFire Fire1;
+    public OvenFire Fire2;
+    
     // Start is called before the first frame update
     void Start()
     {

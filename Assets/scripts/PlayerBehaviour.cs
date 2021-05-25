@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    MeatObject inHand;
+    public FoodObject inHand;
 
     // Start is called before the first frame update
     void Start()
@@ -27,22 +27,40 @@ public class PlayerBehaviour : MonoBehaviour
         {
             if (inHand != null)
             {
-                Debug.Log("kkkkkkkkkkkkkkkkkkkk");
-                inHand.DestroyMeat();
+                Destroy(inHand.gameObject);
+                inHand = null;
+                Debug.Log("Left");
             }
             Fridge fridge = other.gameObject.GetComponent<Fridge>();
-            inHand = fridge.spawnIngredient().GetComponent<MeatObject>();
+            inHand = fridge.spawnIngredient().GetComponent<FoodObject>();
             //Destroy(gameObject);
-            Debug.Log("meat",other);
+            Debug.Log("Grabbed");
+        }
+
+        if (other.CompareTag("PastaFridge"))
+        {
+            if (inHand != null)
+            {
+                Destroy(inHand.gameObject);
+                inHand = null;
+                Debug.Log("Left");
+            }
+            Fridge fridge = other.gameObject.GetComponent<Fridge>();
+            inHand = fridge.spawnIngredient().GetComponent<FoodObject>();
+            //Destroy(gameObject);
+            Debug.Log("Grabbed");
         }
 
         else if(other.CompareTag("Oven") && inHand)
         {
-            Oven oven = other.gameObject.GetComponent<Oven>();
-            oven.inOven = inHand;
-            inHand = null;
-            Debug.Log("Cooking", other);
-            //oven.Cook();
+            OvenFire fire = other.gameObject.GetComponent<OvenFire>();
+            if (!fire.inOven) {
+                fire.inOven = inHand;
+                fire.inOven.transform.position = fire.transform.position + new Vector3(0,15,0);
+                inHand = null;
+                Debug.Log("Cooking", other);
+                fire.startCooking();
+            }
         }
     }
 }

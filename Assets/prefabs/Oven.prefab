@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 4180279232361804838}
   - component: {fileID: 985318845840440195}
   - component: {fileID: 3046818244636823369}
-  - component: {fileID: 3701489523031833612}
-  - component: {fileID: 6924424130406077172}
+  - component: {fileID: 8435926940904981248}
   m_Layer: 0
   m_Name: Oven
   m_TagString: Oven
@@ -28,9 +27,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3551235077166755484}
   m_LocalRotation: {x: -0.5936487, y: 0.39445308, z: 0.5855728, w: 0.3861251}
-  m_LocalPosition: {x: 13.098999, y: 11.334704, z: 50.33292}
+  m_LocalPosition: {x: 12.4, y: 13, z: 49.1}
   m_LocalScale: {x: 566.3468, y: 591.6843, z: 632.4118}
-  m_Children: []
+  m_Children:
+  - {fileID: 2031373090187908876}
+  - {fileID: 324099734913204286}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -66.986, y: -92.349, z: 182.364}
@@ -83,20 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3701489523031833612
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3551235077166755484}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.02862312, y: 0.021099811, z: 0.052631103}
-  m_Center: {x: -0.0013113362, y: 0.00009247196, z: 0.00065202115}
---- !u!114 &6924424130406077172
+--- !u!114 &8435926940904981248
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,4 +96,129 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9da2f49aa039e4eb073ef4ed83e9cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Fire1: {fileID: 3500614092123839497}
+  Fire2: {fileID: 7944473441691238470}
+--- !u!1 &8892574808847845202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 324099734913204286}
+  - component: {fileID: 6788116913067654365}
+  - component: {fileID: 7944473441691238470}
+  m_Layer: 0
+  m_Name: Fire2
+  m_TagString: Oven
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &324099734913204286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8892574808847845202}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0042, y: -0, z: -0}
+  m_LocalScale: {x: 0.007131563, y: 0.03340515, z: 0.043230545}
+  m_Children: []
+  m_Father: {fileID: 4180279232361804838}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6788116913067654365
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8892574808847845202}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7944473441691238470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8892574808847845202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1ddbbe73a5fb75448a7476c863fa055, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   inOven: {fileID: 0}
+  timer: {fileID: 0}
+  timerPrefab: {fileID: 2283290125467575449, guid: 2f608baa11cb21d468efd37407a0f0d3,
+    type: 3}
+  offset: {x: 0, y: 15, z: 0}
+--- !u!1 &8907820785751634731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2031373090187908876}
+  - component: {fileID: 8247073004294808090}
+  - component: {fileID: 3500614092123839497}
+  m_Layer: 0
+  m_Name: Fire1
+  m_TagString: Oven
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2031373090187908876
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8907820785751634731}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0041, y: -0, z: -0}
+  m_LocalScale: {x: 0.007131563, y: 0.03340515, z: 0.043230545}
+  m_Children: []
+  m_Father: {fileID: 4180279232361804838}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8247073004294808090
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8907820785751634731}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3500614092123839497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8907820785751634731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1ddbbe73a5fb75448a7476c863fa055, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inOven: {fileID: 0}
+  timer: {fileID: 0}
+  timerPrefab: {fileID: 2283290125467575449, guid: 2f608baa11cb21d468efd37407a0f0d3,
+    type: 3}
+  offset: {x: 0, y: 15, z: -5}
