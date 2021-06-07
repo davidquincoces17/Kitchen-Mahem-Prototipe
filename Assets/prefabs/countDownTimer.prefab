@@ -90,10 +90,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce7d98cf277a6240b50de9d2c75df18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Duration: 10
-  burnedDuration: 10
+  Duration: 4
+  burnedDuration: 4
   uiFill: {fileID: 7247415503677834213}
   uiText: {fileID: 3315041427366855917}
+  state: 0
 --- !u!1 &4603178299470291109
 GameObject:
   m_ObjectHideFlags: 0

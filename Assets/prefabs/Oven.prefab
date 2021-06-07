@@ -163,6 +163,9 @@ MonoBehaviour:
   smoke: {fileID: 0}
   smokePrefab: {fileID: 3216923365951500492, guid: 7928344c9a39fbd4eb4c957288e1140b,
     type: 3}
+  fire: {fileID: 0}
+  firePrefab: {fileID: 5034127118957712213, guid: a51244add4e296a46beeee5663c0e68a,
+    type: 3}
 --- !u!1 &8907820785751634731
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,4 +230,7 @@ MonoBehaviour:
   offset: {x: 0, y: 15, z: -5}
   smoke: {fileID: 0}
   smokePrefab: {fileID: 3216923365951500492, guid: 7928344c9a39fbd4eb4c957288e1140b,
+    type: 3}
+  fire: {fileID: 0}
+  firePrefab: {fileID: 5034127118957712213, guid: a51244add4e296a46beeee5663c0e68a,
     type: 3}

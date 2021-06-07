@@ -10,6 +10,7 @@ public class FoodObject : MonoBehaviour
     public Sprite cooked;
     public Sprite burned;
 
+    public int type;
     // Start is called before the first frame update
     void Start()
     {
