@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour
 {
     public FoodObject inHand;
-    public GameObject inHandFE; // fire extinguisher
+    public FireExtinguisher inHandFE; // fire extinguisher
 
     // Start is called before the first frame update
     void Start()
@@ -104,10 +104,32 @@ public class PlayerBehaviour : MonoBehaviour
                     Destroy(inHand.gameObject);
                     inHand = null;
                 }
-                GameObject fireExtinguisher = other.GetComponent<GameObject>();
-                inHandFE = fireExtinguisher;
+                inHandFE = other.gameObject.GetComponent<FireExtinguisher>();
                 Debug.Log("Grabbed FE");
-                Debug.Log(fireExtinguisher);
+                Debug.Log(inHandFE);
+            }
+        } 
+        else
+        {
+            if (other.CompareTag("Oven"))
+            {
+                OvenFire fire = other.gameObject.GetComponent<OvenFire>();
+
+                if (fire.inOven)
+                {
+                    if (fire.inOven.state == 2)
+                    {
+                        inHand = fire.inOven;
+                        fire.inOven = null;
+                        Destroy(fire.timer.gameObject);
+
+                        // Removing smoke
+                        fire.smoke.gameObject.GetComponent<ParticleSystem>().Stop();
+                        Destroy(inHandFE.gameObject);
+                        inHandFE = null;
+                        fire.stopFire();
+                    }
+                }
             }
         }
 

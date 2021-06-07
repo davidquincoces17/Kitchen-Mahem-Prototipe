@@ -20,13 +20,17 @@ public class OvenFire : MonoBehaviour
 
         fire = Instantiate(firePrefab, transform.position + new Vector3(0, 20, 0), firePrefab.transform.rotation).GetComponent<ParticleSystem>();
         fire.Stop();
+
+        FireLight fireLight = GameObject.FindGameObjectWithTag("FireLight").GetComponent<FireLight>();
+        fireLight.enabled = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         if (inOven) { inOven.state = timer.state; }
-        if (inOven.state == 2 && !fire.isPlaying)
+        if (inOven && inOven.state == 2 && !fire.isPlaying)
         {
             // Start the fire
             fire.Play();
@@ -48,5 +52,17 @@ public class OvenFire : MonoBehaviour
         timer = Instantiate(timerPrefab, transform.position + offset, timerPrefab.transform.rotation, GameObject.FindGameObjectWithTag("Canvas").transform).GetComponent<Timer>();
         // Showing smoke
         smoke.Play();
+    }
+
+    public void stopFire()
+    {
+        // Stop fire
+        fire.Stop();
+        
+        // Stop flickering fire light
+        FireLight fireLight = GameObject.FindGameObjectWithTag("FireLight").GetComponent<FireLight>();
+        fireLight.isActive = false;
+
+        // TODO: Stop Alarm sound
     }
 }

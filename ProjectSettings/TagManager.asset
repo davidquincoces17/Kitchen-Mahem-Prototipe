@@ -27,6 +27,8 @@ TagManager:
   - PastaFridge
   - Canvas
   - Counter
+  - FireExtinguisher
+  - FireLight
   layers:
   - Default
   - TransparentFX
