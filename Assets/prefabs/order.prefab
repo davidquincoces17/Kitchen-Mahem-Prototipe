@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 1312357067818317814}
   - component: {fileID: 3244223141030883543}
   - component: {fileID: 3802770577534042584}
-  - component: {fileID: 3169418483151468726}
+  - component: {fileID: 4020714963397426304}
   m_Layer: 0
   m_Name: order
   m_TagString: Untagged
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3169418483151468726
+--- !u!114 &4020714963397426304
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,14 +244,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2283290125467575449}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ce7d98cf277a6240b50de9d2c75df18, type: 3}
+  m_Script: {fileID: 11500000, guid: 073a405962a96ad45a13fedca579c36b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Duration: 10
-  burnedDuration: 10
-  uiFill: {fileID: 0}
-  uiText: {fileID: 3315041427366855917}
-  state: 0
+  vegetableText: {fileID: 3721817265646352224}
+  meatText: {fileID: 1278276533197619989}
+  pastaText: {fileID: 7261477637564930023}
+  vegetableCircle: {fileID: 6556679458728348022}
+  meatCircle: {fileID: 6556679458728348022}
+  pastaCircle: {fileID: 5446256853519901244}
 --- !u!1 &2705644195163202266
 GameObject:
   m_ObjectHideFlags: 0
