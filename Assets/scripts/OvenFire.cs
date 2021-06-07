@@ -26,6 +26,21 @@ public class OvenFire : MonoBehaviour
     void Update()
     {
         if (inOven) { inOven.state = timer.state; }
+        if (inOven.state == 2 && !fire.isPlaying)
+        {
+            // Start the fire
+            fire.Play();
+            
+            // Show fire extinguisher
+            GameObject fireExtinguisherPrefab = (GameObject)Resources.Load("Fire_Extinguisher/Prefab/fire extinguisher", typeof(GameObject));
+            GameObject fireExtinguisher = Instantiate(fireExtinguisherPrefab, fireExtinguisherPrefab.transform.position, fireExtinguisherPrefab.transform.rotation).GetComponent<GameObject>();
+            
+            // Start flickering fire light
+            FireLight fireLight = GameObject.FindGameObjectWithTag("FireLight").GetComponent<FireLight>();
+            fireLight.isActive = true;
+
+            // TODO: Start Alarm sound
+        }
     }
 
     public void startCooking()

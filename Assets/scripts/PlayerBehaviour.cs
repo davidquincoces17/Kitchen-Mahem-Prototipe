@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour
 {
     public FoodObject inHand;
+    public GameObject inHandFE; // fire extinguisher
 
     // Start is called before the first frame update
     void Start()
@@ -15,94 +16,102 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inHand)
+        if (inHandFE)
+        {
+            inHandFE.transform.position = transform.position + Vector3.up;
+        }
+        else if (inHand)
         {
             inHand.transform.position = transform.position + Vector3.up;
-        }
+        } 
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("MeatFridge"))
+        if (!inHandFE)
         {
-            if (inHand != null)
+            if (other.CompareTag("MeatFridge"))
             {
-                Destroy(inHand.gameObject);
-                inHand = null;
-                Debug.Log("Left");
-            }
-            Fridge fridge = other.gameObject.GetComponent<Fridge>();
-            inHand = fridge.spawnIngredient().GetComponent<FoodObject>();
-            //Destroy(gameObject);
-            Debug.Log("Grabbed");
-        }
-
-        if (other.CompareTag("PastaFridge"))
-        {
-            if (inHand != null)
-            {
-                Destroy(inHand.gameObject);
-                inHand = null;
-                Debug.Log("Left");
-            }
-            Fridge fridge = other.gameObject.GetComponent<Fridge>();
-            inHand = fridge.spawnIngredient().GetComponent<FoodObject>();
-            //Destroy(gameObject);
-            Debug.Log("Grabbed");
-        }
-
-        else if (other.CompareTag("Oven"))
-        {
-            OvenFire fire = other.gameObject.GetComponent<OvenFire>();
-            if (inHand)
-            {
-                if (inHand.state == 0 && !fire.inOven)
+                if (inHand != null)
                 {
-                    fire.inOven = inHand;
-                    fire.inOven.transform.position = fire.transform.position + new Vector3(0, 15, 0);
+                    Destroy(inHand.gameObject);
                     inHand = null;
-
-                    Debug.Log("Cooking", other);
-                    fire.startCooking();
+                    Debug.Log("Left");
                 }
+                Fridge fridge = other.gameObject.GetComponent<Fridge>();
+                inHand = fridge.spawnIngredient().GetComponent<FoodObject>();
+                //Destroy(gameObject);
+                Debug.Log("Grabbed");
             }
-            else if (fire.inOven)
+
+            if (other.CompareTag("PastaFridge"))
             {
-                if (fire.inOven.state > 0)
+                if (inHand != null)
                 {
-                    inHand = fire.inOven;
-                    fire.inOven = null;
-                    Destroy(fire.timer.gameObject);
+                    Destroy(inHand.gameObject);
+                    inHand = null;
+                    Debug.Log("Left");
+                }
+                Fridge fridge = other.gameObject.GetComponent<Fridge>();
+                inHand = fridge.spawnIngredient().GetComponent<FoodObject>();
+                //Destroy(gameObject);
+                Debug.Log("Grabbed");
+            }
+            else if (other.CompareTag("Oven"))
+            {
+                OvenFire fire = other.gameObject.GetComponent<OvenFire>();
+                if (inHand)
+                {
+                    if (inHand.state == 0 && !fire.inOven)
+                    {
+                        fire.inOven = inHand;
+                        fire.inOven.transform.position = fire.transform.position + new Vector3(0, 15, 0);
+                        inHand = null;
 
-                    // Removing smoke
-                    fire.smoke.gameObject.GetComponent<ParticleSystem>().Stop();
-                   
-                    //fire.smoke.transform.position = fire.transform.position + new Vector3(0, 17, 0);
+                        Debug.Log("Cooking", other);
+                        fire.startCooking();
+                    }
+                }
+                else if (fire.inOven)
+                {
+                    if (fire.inOven.state > 0)
+                    {
+                        inHand = fire.inOven;
+                        fire.inOven = null;
+                        Destroy(fire.timer.gameObject);
+
+                        // Removing smoke
+                        fire.smoke.gameObject.GetComponent<ParticleSystem>().Stop();
+                    }
                 }
             }
-        }
-        else if (other.CompareTag("Counter") && inHand)
-        {
-            CounterSpace counter = other.gameObject.GetComponent<CounterSpace>();
-            if (!counter.inPreparation)
+            else if (other.CompareTag("Counter") && inHand)
             {
-                counter.inPreparation = inHand;
-                counter.inPreparation.transform.position = counter.transform.position + new Vector3(0, 15, 0);
-                inHand = null;
+                CounterSpace counter = other.gameObject.GetComponent<CounterSpace>();
+                if (!counter.inPreparation)
+                {
+                    counter.inPreparation = inHand;
+                    counter.inPreparation.transform.position = counter.transform.position + new Vector3(0, 15, 0);
+                    inHand = null;
+                }
+            }
+
+            else if (other.CompareTag("FireExtinguisher"))
+            {
+                if (inHand != null)
+                {
+                    Destroy(inHand.gameObject);
+                    inHand = null;
+                }
+                GameObject fireExtinguisher = other.GetComponent<GameObject>();
+                inHandFE = fireExtinguisher;
+                Debug.Log("Grabbed FE");
+                Debug.Log(fireExtinguisher);
             }
         }
-        /*else if (other.CompareTag("FireExtinguisher"))
-        {
-            if (inHand != null)
-            {
-                Destroy(inHand.gameObject);
-                inHand = null;
-                Debug.Log("Left");
-            }
-            Fridge fridge = other.gameObject.GetComponent<Fridge>();
-            inHand = other.gameObject.GetComponent<FireExtinguisher>();
-            //Destroy(gameObject);
-            Debug.Log("Grabbed FE");
-        }*/
+
+
+
     }
 }
