@@ -98,5 +98,18 @@ public class PlayerBehaviour : MonoBehaviour
                 inHand = null;
             }
         }
+        /*else if (other.CompareTag("FireExtinguisher"))
+        {
+            if (inHand != null)
+            {
+                Destroy(inHand.gameObject);
+                inHand = null;
+                Debug.Log("Left");
+            }
+            Fridge fridge = other.gameObject.GetComponent<Fridge>();
+            inHand = other.gameObject.GetComponent<FireExtinguisher>();
+            //Destroy(gameObject);
+            Debug.Log("Grabbed FE");
+        }*/
     }
 }
