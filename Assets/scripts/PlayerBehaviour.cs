@@ -75,12 +75,10 @@ public class PlayerBehaviour : MonoBehaviour
             else if (other.CompareTag("Counter") && inHand)
             {
                 CounterSpace counter = other.gameObject.GetComponent<CounterSpace>();
-                if (!counter.inPreparation)
-                {
-                    counter.inPreparation = inHand;
-                    counter.inPreparation.transform.position = counter.transform.position + new Vector3(0, 15, 0);
-                    inHand = null;
-                }
+                if (counter.components[inHand.type]) {Destroy(counter.components[inHand.type].gameObject);}
+                counter.components[inHand.type] = inHand;
+                counter.components[inHand.type].transform.position = counter.transform.position + new Vector3(inHand.type*7-7, 15, 0);
+                inHand = null;
             }
 
             else if (other.CompareTag("FireExtinguisher"))

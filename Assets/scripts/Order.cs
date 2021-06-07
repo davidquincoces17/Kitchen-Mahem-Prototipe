@@ -27,15 +27,15 @@ int completed = 0;
 	vegetables = v;
     }
 
-   int check(DishObject dish){
-	if(dish.pComponent.state==pasta){completed+=5;}
-		else if (dish.pComponent.state!=0 && dish.pComponent.state!=2){completed+=1;}
+   int check(CounterSpace dish){
+	if(dish.components[0].state==meat){completed+=5;}
+		else if (dish.components[0].state!=0 && dish.components[0].state!=2){completed+=1;}
 		else {completed-=2;}
-	if(dish.mComponent.state==meat){completed+=5;} 
-		else if (dish.mComponent.state!=0 && dish.mComponent.state!=2){completed+=1;}
+	if(dish.components[1].state==pasta){completed+=5;} 
+		else if (dish.components[1].state!=0 && dish.components[1].state!=2){completed+=1;}
 		else {completed-=2;}
-	if(dish.vComponent.state==vegetables){completed+=5;}
-		else if (dish.vComponent.state!=0 && dish.vComponent.state!=2){completed+=1;}
+	if(dish.components[2].state==vegetables){completed+=5;}
+		else if (dish.components[2].state!=0 && dish.components[2].state!=2){completed+=1;}
 		else {completed-=2;}
 	return completed;
    }

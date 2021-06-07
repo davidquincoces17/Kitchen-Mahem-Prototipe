@@ -99,4 +99,4 @@ MonoBehaviour:
   raw: {fileID: 21300000, guid: 78a7197835fa2f5488077ceb6dacd6e0, type: 3}
   cooked: {fileID: 21300000, guid: a96c9b0c83af8924aace1e3e2d36c977, type: 3}
   burned: {fileID: 21300000, guid: 541682db5b29f1541b9612e57f5bafe7, type: 3}
-  type: 0
+  type: 2

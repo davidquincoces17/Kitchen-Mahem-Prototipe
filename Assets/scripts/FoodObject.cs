@@ -5,12 +5,12 @@ using UnityEngine;
 public class FoodObject : MonoBehaviour
 {
     public int state = 0;
+    public int type;
 
     public Sprite raw;
     public Sprite cooked;
     public Sprite burned;
 
-    public int type;
     // Start is called before the first frame update
     void Start()
     {
