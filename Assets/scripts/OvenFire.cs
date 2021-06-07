@@ -12,6 +12,7 @@ public class OvenFire : MonoBehaviour
     public GameObject smokePrefab;
     public ParticleSystem fire;
     public GameObject firePrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +21,6 @@ public class OvenFire : MonoBehaviour
 
         fire = Instantiate(firePrefab, transform.position + new Vector3(0, 20, 0), firePrefab.transform.rotation).GetComponent<ParticleSystem>();
         fire.Stop();
-
-        FireLight fireLight = GameObject.FindGameObjectWithTag("FireLight").GetComponent<FireLight>();
-        fireLight.enabled = false;
-
     }
 
     // Update is called once per frame
@@ -62,6 +59,8 @@ public class OvenFire : MonoBehaviour
         // Stop flickering fire light
         FireLight fireLight = GameObject.FindGameObjectWithTag("FireLight").GetComponent<FireLight>();
         fireLight.isActive = false;
+	fireLight.gameObject.GetComponent<Light>().enabled = false; //TODO: BUG - WHEN PUTTING ONE FIRE DOWN, LIGHTS GO OUT REGARDLESS IF THERE ARE OTHERS
+	
 
         // TODO: Stop Alarm sound
     }

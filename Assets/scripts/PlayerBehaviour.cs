@@ -75,7 +75,7 @@ public class PlayerBehaviour : MonoBehaviour
                 }
                 else if (fire.inOven)
                 {
-                    if (fire.inOven.state > 0)
+                    if (fire.inOven.state > 0 && !fire.fire.isPlaying)
                     {
                         inHand = fire.inOven;
                         fire.inOven = null;
