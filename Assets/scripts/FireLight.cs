@@ -11,7 +11,7 @@ public class FireLight : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //this.gameObject.GetComponent<Light>().enabled = false;
+
     }
 
     // Update is called once per frame
