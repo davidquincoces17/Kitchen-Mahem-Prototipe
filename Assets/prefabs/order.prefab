@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: tbd
+  m_Text: 
 --- !u!1 &1432249455935553735
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,8 +181,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2283290125467575449}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -3.5512}
+  m_LocalScale: {x: 0.051388104, y: 0.051388104, z: 0.051388104}
   m_Children:
   - {fileID: 9129026236077936689}
   - {fileID: 2656856805374872342}
@@ -194,7 +194,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 7.7905, y: 0}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3244223141030883543
@@ -250,7 +250,7 @@ MonoBehaviour:
   vegetableText: {fileID: 3721817265646352224}
   meatText: {fileID: 1278276533197619989}
   pastaText: {fileID: 7261477637564930023}
-  vegetableCircle: {fileID: 6556679458728348022}
+  vegetableCircle: {fileID: 2537980872389029056}
   meatCircle: {fileID: 6556679458728348022}
   pastaCircle: {fileID: 5446256853519901244}
 --- !u!1 &2705644195163202266
@@ -572,7 +572,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: tbd
+  m_Text: 
 --- !u!1 &5726841744436151308
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,4 +957,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: tbd
+  m_Text: 

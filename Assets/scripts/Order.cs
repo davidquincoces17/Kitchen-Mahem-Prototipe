@@ -24,7 +24,7 @@ private int vegetableTech = 0;
 private int meatTech = 0;
 private int pastaTech = 0;
 
-List<string> techinques = new List<string>(new string[] {"None","Fried","Baked","Boiled"});
+List<string> techinques = new List<string>(new string[] {"Not wanted","Fried","Baked","Boiled"});
 
 Color32[] ColorTech = new Color32[] {new Color32(100, 100, 100, 255),new Color32(200, 0, 0, 255),new Color32(0, 100, 100, 255),new Color32(0, 200, 0, 255)};
 
@@ -42,9 +42,11 @@ Color32[] ColorTech = new Color32[] {new Color32(100, 100, 100, 255),new Color32
 			meatText.text = techinques[meatTech];
 			meatCircle.color = ColorTech[meatTech];
 
-			pastaTech = Random.Range(0, 1);
-			if(pastaTech == 1){
-				pastaTech = 4;
+			pastaTech = Random.Range(0, 3);
+			if(pastaTech >= 1){
+				pastaTech = 3;
+			}else{
+				pastaTech = 0;
 			};
 			pastaText.text = techinques[pastaTech];
 			pastaCircle.color = ColorTech[pastaTech];
