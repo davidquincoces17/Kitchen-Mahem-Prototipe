@@ -31,21 +31,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (!inHandFE)
         {
-            if (other.CompareTag("MeatFridge"))
-            {
-                if (inHand != null)
-                {
-                    Destroy(inHand.gameObject);
-                    inHand = null;
-                    Debug.Log("Left");
-                }
-                Fridge fridge = other.gameObject.GetComponent<Fridge>();
-                inHand = fridge.spawnIngredient().GetComponent<FoodObject>();
-                //Destroy(gameObject);
-                Debug.Log("Grabbed");
-            }
-
-            if (other.CompareTag("PastaFridge"))
+            if (other.CompareTag("PastaFridge") || other.CompareTag("MeatFridge") || other.CompareTag("VegetableFridge") )
             {
                 if (inHand != null)
                 {
