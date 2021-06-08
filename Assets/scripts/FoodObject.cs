@@ -12,7 +12,8 @@ public class FoodObject : MonoBehaviour
     public Sprite cooked;
     public Sprite burned;
 
-    // Start is called before the first frame update
+    Color32[] ColorTech = new Color32[] {new Color32(255, 255, 255, 255),new Color32(200, 200, 0, 255),new Color32(255, 25, 25, 255),new Color32(0, 25, 200, 255)};
+    
     void Start()
     {
 
@@ -21,8 +22,13 @@ public class FoodObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+	this.GetComponent<SpriteRenderer>().color = ColorTech[tech];
         if (state == 0) { this.GetComponent<SpriteRenderer>().sprite = raw; }
         else if (state == 1) { this.GetComponent<SpriteRenderer>().sprite = cooked; }
-        else if (state == 2) { this.GetComponent<SpriteRenderer>().sprite = burned; }
+        else if (state == 2) { 
+		this.GetComponent<SpriteRenderer>().sprite = burned; 
+		this.GetComponent<SpriteRenderer>().color = new Color32(25, 25, 25, 255);
+	}
+	
     }
 }

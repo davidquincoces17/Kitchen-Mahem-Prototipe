@@ -96,7 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  type: 1
+  tech: 0
   raw: {fileID: 21300000, guid: bdb8425ccb516164ea1a62ac85873de3, type: 3}
   cooked: {fileID: 21300000, guid: 376df5cff6b4bb843aa7568c08f1b763, type: 3}
   burned: {fileID: 21300000, guid: f5d6545e7132cb04ba155ce856c4dff9, type: 3}
-  type: 1
