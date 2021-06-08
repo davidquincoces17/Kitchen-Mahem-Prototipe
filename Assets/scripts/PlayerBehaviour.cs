@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -120,6 +121,8 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 CounterSpace counter = other.gameObject.GetComponent<CounterSpace>();
 		int reward = inHandO.check(counter);
+		GameObject totalcash = GameObject.FindWithTag("TotalCash");
+		totalcash.GetComponent<Points>().add(reward);
 		Debug.Log(reward);
 		for(int i=0; i<3; i++){
 			if (counter.components[i]){
