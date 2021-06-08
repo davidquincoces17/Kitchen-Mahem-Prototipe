@@ -6,6 +6,7 @@ public class PlayerBehaviour : MonoBehaviour
 {
     public FoodObject inHand;
     public FireExtinguisher inHandFE; // fire extinguisher
+    public Order inHandO; // fire extinguisher
 
     // Start is called before the first frame update
     void Start()
@@ -24,12 +25,16 @@ public class PlayerBehaviour : MonoBehaviour
         {
             inHand.transform.position = transform.position + Vector3.up;
         } 
+	else if (inHandO)
+        {
+            inHandO.transform.position = transform.position + Vector3.up;
+        } 
         
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!inHandFE)
+        if (!inHandFE && !inHandO)
         {
             if (other.CompareTag("PastaFridge") || other.CompareTag("MeatFridge") || other.CompareTag("VegetableFridge") )
             {
@@ -81,7 +86,7 @@ public class PlayerBehaviour : MonoBehaviour
                 inHand = null;
             }
 
-            else if (other.CompareTag("FireExtinguisher"))
+            else if (other.CompareTag("FireExtinguisher") && !inHandO)
             {
                 if (inHand != null)
                 {
@@ -92,8 +97,32 @@ public class PlayerBehaviour : MonoBehaviour
                 Debug.Log("Grabbed FE");
                 Debug.Log(inHandFE);
             }
+	    
+	    else if (other.CompareTag("OrderSpace"))
+            {
+		OrderHolder holder = other.gameObject.GetComponent<OrderHolder>();
+		if(holder.order){
+                	if (inHand != null)
+                	{
+                    		Destroy(inHand.gameObject);
+                    		inHand = null;
+                	}
+                	inHandO = holder.order;
+                	//Debug.Log("Grabbed order");
+                	//Debug.Log(inHandO);
+		}
+		else{Debug.Log("no order");}
+            }
         } 
-        else
+	else if (!inHandFE && inHandO)
+        {
+	    if (other.CompareTag("Counter"))
+            {
+                CounterSpace counter = other.gameObject.GetComponent<CounterSpace>();
+                inHandO = null;
+            }
+	}
+        else if (inHandFE && !inHandO)
         {
             if (other.CompareTag("Oven"))
             {
@@ -116,8 +145,5 @@ public class PlayerBehaviour : MonoBehaviour
                 }
             }
         }
-
-
-
     }
 }
