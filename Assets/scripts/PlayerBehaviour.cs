@@ -119,7 +119,16 @@ public class PlayerBehaviour : MonoBehaviour
 	    if (other.CompareTag("Counter"))
             {
                 CounterSpace counter = other.gameObject.GetComponent<CounterSpace>();
-                inHandO = null;
+		int reward = inHandO.check(counter);
+		Debug.Log(reward);
+		for(int i=0; i<3; i++){
+			if (counter.components[i]){
+				Destroy(counter.components[i].gameObject);
+				counter.components[i]=null;
+			}
+		}
+                Destroy(inHandO.gameObject);
+		inHandO = null;
             }
 	}
         else if (inHandFE && !inHandO)

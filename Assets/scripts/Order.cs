@@ -6,10 +6,6 @@ using UnityEngine.EventSystems;
 
 public class Order : MonoBehaviour
 {
-// -1 not asked, 0 raw, 1 cooked, 2 burned
-int pasta;
-int meat;
-int vegetables;
 int completed = 0;
 
 [SerializeField] public Text vegetableText;
@@ -61,23 +57,24 @@ Color32[] ColorTech = new Color32[] {new Color32(0, 0, 0, 255),new Color32(200, 
         
     }
 
-//     void set(int p, int m, int v){
-// 	pasta = p;
-// 	meat = m;
-// 	vegetables = v;
-//     }
+    public int check(CounterSpace dish){
+ 	if(dish.components[0]){
+		if(dish.components[0] && dish.components[0].tech==meatTech && dish.components[0].state==1){completed+=5;}
+ 			else if(dish.components[0].tech!=meatTech && dish.components[0].state==1){completed+=2;}
+ 			else {completed-=2;}
+	}
+ 	if(dish.components[1]){
+		if(dish.components[1] && dish.components[1].tech==pastaTech && dish.components[1].state==1){completed+=5;}
+ 			else if(dish.components[1].tech!=pastaTech && dish.components[1].state==1){completed+=2;}
+ 			else {completed-=2;}
+	}
+ 	if(dish.components[2]){
+		if(dish.components[2].tech==vegetableTech && dish.components[2].state==1){completed+=5;}
+ 			else if(dish.components[2].tech!=vegetableTech && dish.components[2].state==1){completed+=2;}
+ 			else {completed-=2;}
+	}
 
-//    int check(CounterSpace dish){
-// 	if(dish.components[0].state==meat){completed+=5;}
-// 		else if (dish.components[0].state!=0 && dish.components[0].state!=2){completed+=1;}
-// 		else {completed-=2;}
-// 	if(dish.components[1].state==pasta){completed+=5;} 
-// 		else if (dish.components[1].state!=0 && dish.components[1].state!=2){completed+=1;}
-// 		else {completed-=2;}
-// 	if(dish.components[2].state==vegetables){completed+=5;}
-// 		else if (dish.components[2].state!=0 && dish.components[2].state!=2){completed+=1;}
-// 		else {completed-=2;}
-// 	return completed;
-//    }
+ 	return completed;
+    }
 
 }

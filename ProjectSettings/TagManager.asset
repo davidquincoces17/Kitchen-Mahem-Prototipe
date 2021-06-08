@@ -30,6 +30,7 @@ TagManager:
   - FireExtinguisher
   - FireLight
   - VegetableFridge
+  - OrderSpace
   layers:
   - Default
   - TransparentFX

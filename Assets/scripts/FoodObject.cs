@@ -6,6 +6,7 @@ public class FoodObject : MonoBehaviour
 {
     public int state = 0;
     public int type;
+    public int tech;
 
     public Sprite raw;
     public Sprite cooked;

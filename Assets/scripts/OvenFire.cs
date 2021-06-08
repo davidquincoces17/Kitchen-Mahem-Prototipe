@@ -13,6 +13,8 @@ public class OvenFire : MonoBehaviour
     public ParticleSystem fire;
     public GameObject firePrefab;
 
+    public int tech;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +28,7 @@ public class OvenFire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inOven) { inOven.state = timer.state; }
+        if (inOven) { inOven.state = timer.state;}
         if (inOven && inOven.state == 2 && !fire.isPlaying)
         {
             // Start the fire
@@ -46,6 +48,7 @@ public class OvenFire : MonoBehaviour
 
     public void startCooking()
     {
+	inOven.tech = tech;
         timer = Instantiate(timerPrefab, transform.position + offset, timerPrefab.transform.rotation, GameObject.FindGameObjectWithTag("Canvas").transform).GetComponent<Timer>();
         // Showing smoke
         smoke.Play();
