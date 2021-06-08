@@ -30,20 +30,20 @@ Color32[] ColorTech = new Color32[] {new Color32(0, 0, 0, 255),new Color32(200, 
     void Start()
     { 	
 		while(vegetableTech == 0 && meatTech == 0 && pastaTech == 0){
-			vegetableTech = Random.Range(0, 3);
+			vegetableTech = Random.Range(0, 4);
 			vegetableText.text = techinques[vegetableTech];
 			vegetableCircle.color = ColorTech[vegetableTech];
 
-			meatTech = Random.Range(0, 2);
+			meatTech = Random.Range(0, 3);
 			meatText.text = techinques[meatTech];
 			meatCircle.color = ColorTech[meatTech];
 
-			pastaTech = Random.Range(0, 1)*3;
-			//if(pastaTech >= 1){
-			//	pastaTech = 3;
-			//}else{
-			//	pastaTech = 0;
-			//};
+			pastaTech = Random.Range(0, 4);
+			if(pastaTech > 1){
+				pastaTech = 3;
+			}else{
+				pastaTech = 0;
+			};
 			Debug.Log(pastaTech);
 			pastaText.text = techinques[pastaTech];
 			Debug.Log(techinques[pastaTech]);
