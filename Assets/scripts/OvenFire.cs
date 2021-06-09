@@ -42,6 +42,8 @@ public class OvenFire : MonoBehaviour
             FireLight fireLight = GameObject.FindGameObjectWithTag("FireLight").GetComponent<FireLight>();
             fireLight.isActive = true;
 
+ 	    fireLight.active_fires+=1;
+
             // TODO: Start Alarm sound
         }
     }
@@ -61,9 +63,11 @@ public class OvenFire : MonoBehaviour
         
         // Stop flickering fire light
         FireLight fireLight = GameObject.FindGameObjectWithTag("FireLight").GetComponent<FireLight>();
-        fireLight.isActive = false;
-	fireLight.gameObject.GetComponent<Light>().enabled = false; //TODO: BUG - WHEN PUTTING ONE FIRE DOWN, LIGHTS GO OUT REGARDLESS IF THERE ARE OTHERS
-	
+        fireLight.active_fires -=1;
+	if(fireLight.active_fires==0){
+		fireLight.isActive = false;
+		fireLight.gameObject.GetComponent<Light>().enabled = false; //TODO: BUG - WHEN PUTTING ONE FIRE DOWN, LIGHTS GO OUT REGARDLESS IF THERE ARE OTHERS
+	}
 
         // TODO: Stop Alarm sound
     }

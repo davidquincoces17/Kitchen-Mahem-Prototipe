@@ -7,6 +7,7 @@ public class FireLight : MonoBehaviour
     public bool isFlickering = false;
     public float timeDelay;
     public bool isActive = false;
+    public int active_fires = 0;
     
     // Start is called before the first frame update
     void Start()
