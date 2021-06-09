@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 746186707522591667}
   - component: {fileID: 8777444252241381798}
   - component: {fileID: 686605943}
+  - component: {fileID: 6689930769205186729}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player1
@@ -166,6 +167,25 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6689930769205186729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746186707522591664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d47a14664b372614cb55c970ce85a232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inHand: {fileID: 0}
+  inHandFE: {fileID: 0}
+  inHandO: {fileID: 0}
+  interT: {fileID: 0}
+  timerPrefab: {fileID: 2283290125467575449, guid: 3e589e4542775de41be4272dfc387fef,
+    type: 3}
+  isColliding: 0
 --- !u!1001 &5349642512159215241
 PrefabInstance:
   m_ObjectHideFlags: 0
