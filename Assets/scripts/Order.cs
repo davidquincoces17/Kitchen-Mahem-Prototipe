@@ -74,6 +74,20 @@ Color32[] ColorTech = new Color32[] {new Color32(0, 0, 0, 255),new Color32(200, 
  			else {completed-=2;}
 	}
 
+	//Play Order Completion sound
+	if(completed < 0)
+	{
+		SoundManager.Instance.PlayOrderBad();
+	}
+	else if(completed == 6)
+	{
+		SoundManager.Instance.PlayOrderVeryGood();
+	}
+	else
+	{
+		SoundManager.Instance.PlayOrderGood();
+	}
+
  	return completed;
     }
 

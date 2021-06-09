@@ -13,6 +13,7 @@ public class OvenFire : MonoBehaviour
     public ParticleSystem fire;
     public GameObject firePrefab;
 
+
     public int tech;
 
     // Start is called before the first frame update
@@ -33,6 +34,8 @@ public class OvenFire : MonoBehaviour
         {
             // Start the fire
             fire.Play();
+
+
             
             // Show fire extinguisher
             GameObject fireExtinguisherPrefab = (GameObject)Resources.Load("Fire_Extinguisher/Prefab/fire extinguisher", typeof(GameObject));
@@ -42,16 +45,32 @@ public class OvenFire : MonoBehaviour
             FireLight fireLight = GameObject.FindGameObjectWithTag("FireLight").GetComponent<FireLight>();
             fireLight.isActive = true;
 
- 	    fireLight.active_fires+=1;
+ 	        fireLight.active_fires+=1;
 
-            // TODO: Start Alarm sound
+            //Play the alarm
+            SoundManager.Instance.PlayAlarm();
         }
     }
 
     public void startCooking()
     {
-	inOven.tech = tech;
+	    inOven.tech = tech;
         timer = Instantiate(timerPrefab, transform.position + offset, timerPrefab.transform.rotation, GameObject.FindGameObjectWithTag("Canvas").transform).GetComponent<Timer>();
+        
+        //Play sound
+        switch (tech)
+      {
+          case 1:
+              SoundManager.Instance.PlayFryer();
+              break;
+          case 2:
+              SoundManager.Instance.PlayOven();
+              break;
+          default:
+              SoundManager.Instance.PlayBoiler();
+              break;
+      }
+        
         // Showing smoke
         smoke.Play();
     }
@@ -60,7 +79,11 @@ public class OvenFire : MonoBehaviour
     {
         // Stop fire
         fire.Stop();
-        
+
+        //Stop the alarm
+        SoundManager.Instance.StopAlarm();
+
+
         // Stop flickering fire light
         FireLight fireLight = GameObject.FindGameObjectWithTag("FireLight").GetComponent<FireLight>();
         fireLight.active_fires -=1;
@@ -69,6 +92,6 @@ public class OvenFire : MonoBehaviour
 		fireLight.gameObject.GetComponent<Light>().enabled = false; //TODO: BUG - WHEN PUTTING ONE FIRE DOWN, LIGHTS GO OUT REGARDLESS IF THERE ARE OTHERS
 	}
 
-        // TODO: Stop Alarm sound
+
     }
 }

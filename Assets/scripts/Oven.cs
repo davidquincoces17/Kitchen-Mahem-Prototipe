@@ -15,8 +15,8 @@ public class Oven : MonoBehaviour
     void Start()
     {
         Fire1.tech = tech;
-	Fire2.tech = tech;
-	transform.GetChild(2).GetComponent<SpriteRenderer>().color = ColorTech[tech];
+        Fire2.tech = tech;
+        transform.GetChild(2).GetComponent<SpriteRenderer>().color = ColorTech[tech];
     }
 
     // Update is called once per frame

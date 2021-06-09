@@ -47,6 +47,7 @@ public class Timer : MonoBehaviour
 
     private void OnEnd()
     {
+        SoundManager.Instance.PlayTimerReady();
         state = 1;
         Debug.Log("Food completed");
         remainingDurationBurned = burnedDuration;

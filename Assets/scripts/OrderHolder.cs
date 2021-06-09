@@ -30,7 +30,8 @@ public class OrderHolder : MonoBehaviour
 
     public void newOrder()
     {
+        SoundManager.Instance.PlayOrderIncoming();
         order = Instantiate(orderPrefab, transform.position, orderPrefab.transform.rotation, GameObject.FindGameObjectWithTag("Canvas").transform).GetComponent<Order>();
-        order.transform.localScale = new Vector3(0.35f, 0.35f, 0.35f);
+        order.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
     }
 }

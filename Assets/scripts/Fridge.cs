@@ -19,6 +19,7 @@ public class Fridge : MonoBehaviour
 
     public GameObject spawnIngredient()
     {
+        SoundManager.Instance.PlayFridge();
         return Instantiate(foodPrefab,transform.position,foodPrefab.transform.rotation);
     }
 }
