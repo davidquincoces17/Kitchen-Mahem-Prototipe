@@ -48,7 +48,7 @@ public class OvenFire : MonoBehaviour
  	        fireLight.active_fires+=1;
 
             //Play the alarm
-            SoundManager.Instance.PlayAlarm();
+            if (fireLight.active_fires==1){SoundManager.Instance.StartAlarm();}
         }
     }
 
@@ -81,7 +81,7 @@ public class OvenFire : MonoBehaviour
         fire.Stop();
 
         //Stop the alarm
-        SoundManager.Instance.StopAlarm();
+        //SoundManager.Instance.StopAlarm();
 
 
         // Stop flickering fire light
@@ -89,7 +89,8 @@ public class OvenFire : MonoBehaviour
         fireLight.active_fires -=1;
 	if(fireLight.active_fires==0){
 		fireLight.isActive = false;
-		fireLight.gameObject.GetComponent<Light>().enabled = false; //TODO: BUG - WHEN PUTTING ONE FIRE DOWN, LIGHTS GO OUT REGARDLESS IF THERE ARE OTHERS
+		fireLight.gameObject.GetComponent<Light>().enabled = false;
+		SoundManager.Instance.StopAlarm();
 	}
 
 

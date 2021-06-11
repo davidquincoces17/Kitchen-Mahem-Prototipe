@@ -7,9 +7,11 @@ public class SoundManager : MonoBehaviour
 // Start is called 
 public static SoundManager Instance;
 
-public GameObject AlarmPrefab;
-private GameObject alarm;
-
+//public GameObject AlarmPrefab;
+//private GameObject alarm;
+private bool alarm = false;
+private bool alarm_actually_playing = false;
+public AudioClip Alarm;
 
 public AudioClip TimerReady;
 
@@ -42,14 +44,29 @@ private Vector3 cameraPosition; // before the first frame update
         AudioSource.PlayClipAtPoint(clip, cameraPosition);
     }
 
-    public void PlayAlarm()
+    public void Update(){
+	if(alarm==true && !alarm_actually_playing){
+	    	StartCoroutine("PlayAlarm");
+	}
+    }
+    public IEnumerator PlayAlarm()
     {
-        alarm = Instantiate(AlarmPrefab, AlarmPrefab.transform.position, AlarmPrefab.transform.rotation).GetComponent<GameObject>();
+	alarm_actually_playing = true;
+        PlaySound(Alarm);
+Debug.Log("e");
+	yield return new WaitForSeconds(Alarm.length);
+	alarm_actually_playing = false;
+    }
+    public void StartAlarm()
+    {
+        //alarm = Instantiate(AlarmPrefab, AlarmPrefab.transform.position, AlarmPrefab.transform.rotation).GetComponent<GameObject>();
+	alarm = true;    
     }
 
     public void StopAlarm()
     {
-        Destroy(alarm);
+        alarm = false;
+	//Destroy(alarm.gameObject);
     }
 
     public void PlayTimerReady()

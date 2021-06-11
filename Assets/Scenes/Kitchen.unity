@@ -709,8 +709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0505e94df0bcd61418f4003e5849ec92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AlarmPrefab: {fileID: 2056827785159131833, guid: 5443f1a8fcdc53d499617ea4ba88d035,
-    type: 3}
+  Alarm: {fileID: 8300000, guid: 523943f4cc9c79e4897ca08ffa4269c2, type: 3}
   TimerReady: {fileID: 8300000, guid: 58868e892b93a62478388f1d93c3303c, type: 3}
   Boiler: {fileID: 8300000, guid: a3610f75282b45043ae67d9f50d42bdd, type: 3}
   Fryer: {fileID: 8300000, guid: 7f1bb03ebb332f6438d1c8db1090d20a, type: 3}
