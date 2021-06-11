@@ -15,7 +15,7 @@ public class PlayerBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-	interT = Instantiate(timerPrefab, transform.position, timerPrefab.transform.rotation, GameObject.FindGameObjectWithTag("Canvas").transform).GetComponent<TimerInteraction>();   
+	    interT = Instantiate(timerPrefab, transform.position, timerPrefab.transform.rotation, GameObject.FindGameObjectWithTag("Canvas").transform).GetComponent<TimerInteraction>();   
     }
 
     // Update is called once per frame
@@ -29,34 +29,42 @@ public class PlayerBehaviour : MonoBehaviour
         {
             inHand.transform.position = transform.position + 15*Vector3.up;
         } 
-	else if (inHandO)
+	    else if (inHandO)
         {
             inHandO.transform.position = transform.position + 15*Vector3.up;
         } 
-	interT.transform.position = transform.position + Vector3.up*15;
-	checkInteraction();
-	//other = null;
-	if(interT.state != 0){interT.state=-1;}
+	    interT.transform.position = transform.position + Vector3.up*15;
+	    checkInteraction();
+	    //other = null;
+	    if(interT.state != 0)
+        {
+            interT.state=-1;
+        }
     }
-    private void beginInteraction(Collider c_other){
-	other = c_other;
-	if(interT.state == -1){interT.Begin(interT.Duration);}
+
+    private void beginInteraction(Collider c_other)
+    {
+	    other = c_other;
+	    if(interT.state == -1)
+        {
+                interT.Begin(interT.Duration);
+        }
     }
     
     private void OnTriggerEnter(Collider c_other)
     {
-	beginInteraction(c_other);
+	    beginInteraction(c_other);
     }
 
     private void OnTriggerExit(Collider c_other)
     {
-	other = null;
-	interT.state = -1;
-Debug.Log("out");
+	    other = null;
+	    interT.state = -1;
+        Debug.Log("out");
     }
 
     private void checkInteraction(){
-	if(other && interT.state == 1){
+	    if(other && interT.state == 1){
             if (!inHandFE && !inHandO)
             {
             	if (other.CompareTag("PastaFridge") || other.CompareTag("MeatFridge") || other.CompareTag("VegetableFridge") )
@@ -66,7 +74,7 @@ Debug.Log("out");
                     	Destroy(inHand.gameObject);
                     	inHand = null;
                     	Debug.Log("Left");
-		    }
+		            }
                     Fridge fridge = other.gameObject.GetComponent<Fridge>();
                     inHand = fridge.spawnIngredient().GetComponent<FoodObject>();
                     //Destroy(gameObject);
@@ -89,109 +97,114 @@ Debug.Log("out");
                 	}
                 	else if (fire.inOven)
                 	{
-                    		if (fire.inOven.state > 0 && !fire.fire.isPlaying)
-                    		{
-                       			inHand = fire.inOven;
-                        		fire.inOven = null;
-                        		Destroy(fire.timer.gameObject);
+                    	if (fire.inOven.state > 0 && !fire.fire.isPlaying)
+                    	{
+                       		inHand = fire.inOven;
+                        	fire.inOven = null;
+                        	Destroy(fire.timer.gameObject);
 
-                        		// Removing smoke
-                        fire.smoke.gameObject.GetComponent<ParticleSystem>().Stop();
+                        	// Removing smoke
+                            fire.smoke.gameObject.GetComponent<ParticleSystem>().Stop();
+                        }
                     }
                 }
-            }
-            else if (other.CompareTag("Counter") && inHand)
-            {
-                CounterSpace counter = other.gameObject.GetComponent<CounterSpace>();
-                if (counter.components[inHand.type]) {Destroy(counter.components[inHand.type].gameObject);}
-                counter.components[inHand.type] = inHand;
-                counter.components[inHand.type].transform.position = counter.transform.position + new Vector3(inHand.type*7-7, 15, 0);
-                inHand = null;
-            }
-
-            else if (other.CompareTag("FireExtinguisher") && !inHandO)
-            {
-                if (inHand != null)
+                else if (other.CompareTag("Counter") && inHand)
                 {
-                    Destroy(inHand.gameObject);
+                    CounterSpace counter = other.gameObject.GetComponent<CounterSpace>();
+                    if (counter.components[inHand.type]) {Destroy(counter.components[inHand.type].gameObject);}
+                    counter.components[inHand.type] = inHand;
+                    counter.components[inHand.type].transform.position = counter.transform.position + new Vector3(inHand.type*7-7, 15, 0);
                     inHand = null;
                 }
-                inHandFE = other.gameObject.GetComponent<FireExtinguisher>();
-                Debug.Log("Grabbed FE");
-                Debug.Log(inHandFE);
-            }
+
+                else if (other.CompareTag("FireExtinguisher") && !inHandO)
+                {
+                    if (inHand != null)
+                    {
+                        Destroy(inHand.gameObject);
+                        inHand = null;
+                    }
+                    inHandFE = other.gameObject.GetComponent<FireExtinguisher>();
+                    Debug.Log("Grabbed FE");
+                    Debug.Log(inHandFE);
+                }
 	    
-	    else if (other.CompareTag("OrderSpace"))
-            {
-		OrderHolder holder = other.gameObject.GetComponent<OrderHolder>();
-		if(holder.order){
-                	if (inHand != null)
-                	{
-                    		Destroy(inHand.gameObject);
-                    		inHand = null;
-                	}
-                	inHandO = holder.order;
-                	//Debug.Log("Grabbed order");
-                	//Debug.Log(inHandO);
-		}
-		else{Debug.Log("no order");}
-            }
-        } 
-	else if (!inHandFE && inHandO)
-        {
-	    if (other.CompareTag("Counter"))
-            {
-                CounterSpace counter = other.gameObject.GetComponent<CounterSpace>();
-		int reward = inHandO.check(counter);
-		GameObject totalcash = GameObject.FindWithTag("TotalCash");
-		totalcash.GetComponent<Points>().add(reward);
-		Debug.Log(reward);
-		for(int i=0; i<3; i++){
-			if (counter.components[i]){
-				Destroy(counter.components[i].gameObject);
-				counter.components[i]=null;
-			}
-		}
-                Destroy(inHandO.gameObject);
-		inHandO = null;
-            }
-	}
-        else if (inHandFE && !inHandO)
-        {
-            if (other.CompareTag("Oven"))
-            {
-                OvenFire fire = other.gameObject.GetComponent<OvenFire>();
-
-                if (fire.inOven)
+	            else if (other.CompareTag("OrderSpace"))
                 {
-                    if (fire.inOven.state == 2)
+		            OrderHolder holder = other.gameObject.GetComponent<OrderHolder>();
+		            if(holder.order){
+                	    if (inHand != null)
+                	    {
+                    		    Destroy(inHand.gameObject);
+                    		    inHand = null;
+                	    }
+                	    inHandO = holder.order;
+                	    //Debug.Log("Grabbed order");
+                	    //Debug.Log(inHandO);
+		            }
+		            else
                     {
-                        inHand = fire.inOven;
-                        fire.inOven = null;
-                        Destroy(fire.timer.gameObject);
+                        Debug.Log("no order");
+                    }
+                }
+            } 
+	        else if (!inHandFE && inHandO)
+            {
+	            if (other.CompareTag("Counter"))
+                {
+                    CounterSpace counter = other.gameObject.GetComponent<CounterSpace>();
+		            int reward = inHandO.check(counter);
+		            GameObject totalcash = GameObject.FindWithTag("TotalCash");
+		            totalcash.GetComponent<Points>().add(reward);
+		            Debug.Log(reward);
+		            for(int i=0; i<3; i++)
+                    {
+			            if (counter.components[i])
+                        {
+				            Destroy(counter.components[i].gameObject);
+				            counter.components[i]=null;
+			            }
+		            }
+                    Destroy(inHandO.gameObject);
+		            inHandO = null;
+                }
+	        }
+            else if (inHandFE && !inHandO)
+            {
+                if (other.CompareTag("Oven"))
+                {
+                    OvenFire fire = other.gameObject.GetComponent<OvenFire>();
 
-                        // Removing smoke
-                        fire.smoke.gameObject.GetComponent<ParticleSystem>().Stop();
-                        Destroy(inHandFE.gameObject);
-                        inHandFE = null;
-                        fire.stopFire();
+                    if (fire.inOven)
+                    {
+                        if (fire.inOven.state == 2)
+                        {
+                            inHand = fire.inOven;
+                            fire.inOven = null;
+                            Destroy(fire.timer.gameObject);
+
+                            // Removing smoke
+                            fire.smoke.gameObject.GetComponent<ParticleSystem>().Stop();
+                            Destroy(inHandFE.gameObject);
+                            inHandFE = null;
+                            fire.stopFire();
+                        }
                     }
                 }
             }
-        }
-	if (other.CompareTag("Player1") || other.CompareTag("Player2"))
+	        if (other.CompareTag("Player1") || other.CompareTag("Player2"))
+            {
+                PlayerBehaviour otherPlayer = other.gameObject.GetComponent<PlayerBehaviour>();
+                if(otherPlayer.inHand && otherPlayer.inHand.state == 2)
                 {
-                    PlayerBehaviour otherPlayer = other.gameObject.GetComponent<PlayerBehaviour>();
-                    if(otherPlayer.inHand && otherPlayer.inHand.state == 2)
-                    {
-                        otherPlayer.inHand.state = 1;
-                    }
-                    if (this.inHand && this.inHand.state == 2)
-                    {
-                        this.inHand.state = 1;
-                    }
+                    otherPlayer.inHand.state = 1;
                 }
-	interT.state=-1;
-	}
+                if (this.inHand && this.inHand.state == 2)
+                {
+                    this.inHand.state = 1;
+                }
+            }
+	        interT.state=-1;
+	    }
     }
 }
