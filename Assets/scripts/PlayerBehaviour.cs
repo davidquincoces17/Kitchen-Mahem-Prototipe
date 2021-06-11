@@ -23,17 +23,17 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (inHandFE)
         {
-            inHandFE.transform.position = transform.position + Vector3.up;
+            inHandFE.transform.position = transform.position + 15*Vector3.up;
         }
         else if (inHand)
         {
-            inHand.transform.position = transform.position + Vector3.up;
+            inHand.transform.position = transform.position + 15*Vector3.up;
         } 
 	else if (inHandO)
         {
-            inHandO.transform.position = transform.position + Vector3.up;
+            inHandO.transform.position = transform.position + 15*Vector3.up;
         } 
-	interT.transform.position = transform.position + Vector3.up*3;
+	interT.transform.position = transform.position + Vector3.up*15;
 	checkInteraction();
 	//other = null;
 	if(interT.state != 0){interT.state=-1;}
@@ -45,71 +45,6 @@ public class PlayerBehaviour : MonoBehaviour
     
     private void OnTriggerEnter(Collider c_other)
     {
-	/*if (!inHandFE && !inHandO)
-            {
-            	if (other.CompareTag("PastaFridge") || other.CompareTag("MeatFridge") || other.CompareTag("VegetableFridge") )
-            	{
-                    beginInteraction(c_other);
-            	}
-            	else if (other.CompareTag("Oven"))
-            	{
-                	OvenFire fire = other.gameObject.GetComponent<OvenFire>();
-                	if (inHand)
-                	{
-                    		if (inHand.state == 0 && !fire.inOven)
-                    		{
-                        		beginInteraction(c_other);
-                    		}
-                	}
-                	else if (fire.inOven)
-                	{
-                    		if (fire.inOven.state > 0 && !fire.fire.isPlaying)
-                    		{
-                       			beginInteraction(c_other);
-                    		}
-               		 }
-            }
-            else if (other.CompareTag("Counter") && inHand)
-            {
-                beginInteraction(c_other);
-            }
-
-            else if (other.CompareTag("FireExtinguisher") && !inHandO)
-            {
-               beginInteraction(c_other);
-            }
-	    
-	    else if (other.CompareTag("OrderSpace"))
-            {
-		OrderHolder holder = other.gameObject.GetComponent<OrderHolder>();
-		if(holder.order){
-                	beginInteraction(c_other);
-		}
-		else{Debug.Log("no order");}
-            }
-        } 
-	else if (!inHandFE && inHandO)
-        {
-	    if (other.CompareTag("Counter"))
-            {
-                beginInteraction(c_other);
-            }
-	}
-        else if (inHandFE && !inHandO)
-        {
-            if (other.CompareTag("Oven"))
-            {
-                OvenFire fire = other.gameObject.GetComponent<OvenFire>();
-
-                if (fire.inOven)
-                {
-                    if (fire.inOven.state == 2)
-                    {
-                        beginInteraction(c_other);
-                    }
-                }
-            }
-        }*/
 	beginInteraction(c_other);
     }
 
@@ -244,6 +179,18 @@ Debug.Log("out");
                 }
             }
         }
+	if (other.CompareTag("Player1") || other.CompareTag("Player2"))
+                {
+                    PlayerBehaviour otherPlayer = other.gameObject.GetComponent<PlayerBehaviour>();
+                    if(otherPlayer.inHand && otherPlayer.inHand.state == 2)
+                    {
+                        otherPlayer.inHand.state = 1;
+                    }
+                    if (this.inHand && this.inHand.state == 2)
+                    {
+                        this.inHand.state = 1;
+                    }
+                }
 	interT.state=-1;
 	}
     }

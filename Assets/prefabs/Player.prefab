@@ -109,7 +109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 746186707522591664}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 73.73, y: 0, z: 14.37}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 746186705940698877}
@@ -185,7 +185,7 @@ MonoBehaviour:
   interT: {fileID: 0}
   timerPrefab: {fileID: 2283290125467575449, guid: 3e589e4542775de41be4272dfc387fef,
     type: 3}
-  isColliding: 0
+  other: {fileID: 0}
 --- !u!1001 &5349642512159215241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -230,7 +230,7 @@ PrefabInstance:
     - target: {fileID: 8089109868491360686, guid: d934f33a759114db5b98652ef68184d8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8089109868491360686, guid: d934f33a759114db5b98652ef68184d8,
         type: 3}
@@ -245,17 +245,17 @@ PrefabInstance:
     - target: {fileID: 8089109868491360686, guid: d934f33a759114db5b98652ef68184d8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8089109868491360686, guid: d934f33a759114db5b98652ef68184d8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8089109868491360686, guid: d934f33a759114db5b98652ef68184d8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8089109868491360686, guid: d934f33a759114db5b98652ef68184d8,
         type: 3}
