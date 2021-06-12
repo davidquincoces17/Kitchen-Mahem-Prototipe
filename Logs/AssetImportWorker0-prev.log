@@ -15,11 +15,11 @@ C:/Users/dquin/Documents/GitHub/Kitchen-Mahem-Prototipe
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-49244
+60800
 Successfully changed project path to: C:/Users/dquin/Documents/GitHub/Kitchen-Mahem-Prototipe
 C:/Users/dquin/Documents/GitHub/Kitchen-Mahem-Prototipe
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 38.43 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 38.58 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.2.4f1 (becced5a802b)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/Resources/UnitySubsystems
@@ -35,31 +35,31 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56224
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56248
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.002038 seconds.
+Registered in 0.002145 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 33.04 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 33.61 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.013 seconds
+- Completed reload, in  0.988 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.002055 seconds.
+Registered in 0.001968 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.47 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 0.46 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.671 seconds
+- Completed reload, in  0.675 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
@@ -71,121 +71,69 @@ System memory in use before: 139.3 MB.
 System memory in use after: 139.4 MB.
 
 Unloading 33 unused Assets to reduce memory usage. Loaded Objects now: 1896.
-Total: 1.719500 ms (FindLiveObjects: 0.123400 ms CreateObjectMapping: 0.035200 ms MarkObjects: 1.501300 ms  DeleteObjects: 0.058800 ms)
+Total: 1.646900 ms (FindLiveObjects: 0.155600 ms CreateObjectMapping: 0.036100 ms MarkObjects: 1.397200 ms  DeleteObjects: 0.057200 ms)
 
 ========================================================================
 Received Import Request.
-  path: Assets/scripts/Order.cs
-  artifactKey: Guid(073a405962a96ad45a13fedca579c36b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/scripts/Order.cs using Guid(073a405962a96ad45a13fedca579c36b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c47c64eff77860c0e50692f3ed57797a') in 0.032679 seconds
-  Import took 0.034748 seconds .
+  path: Assets/sprites/dish010.png
+  artifactKey: Guid(5b41277c73a1b9e4497a87f094140bf8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/sprites/dish010.png using Guid(5b41277c73a1b9e4497a87f094140bf8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '377f909c12e60c6490a1bd139ec047b7') in 0.054443 seconds
+  Import took 0.056611 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 55.900084 seconds.
-  path: Assets/scripts/PlayerBehaviour.cs
-  artifactKey: Guid(d47a14664b372614cb55c970ce85a232) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/scripts/PlayerBehaviour.cs using Guid(d47a14664b372614cb55c970ce85a232) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1e77c5690850d37b52bbea37e3a80bc1') in 0.007640 seconds
-  Import took 0.010084 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001902 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.46 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.632 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.47 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1442 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 138.2 MB.
-System memory in use after: 138.3 MB.
-
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 1898.
-Total: 1.778000 ms (FindLiveObjects: 0.167800 ms CreateObjectMapping: 0.048100 ms MarkObjects: 1.544400 ms  DeleteObjects: 0.016800 ms)
+  Time since last request: 0.000195 seconds.
+  path: Assets/sprites/dish001.png
+  artifactKey: Guid(ed159fe2c19a52a479b344a05888bb39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/sprites/dish001.png using Guid(ed159fe2c19a52a479b344a05888bb39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '135c58076089b422ad9becbcffc13c2c') in 0.009594 seconds
+  Import took 0.011761 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 395.727111 seconds.
-  path: Assets/scripts/Oven.cs
-  artifactKey: Guid(cf9da2f49aa039e4eb073ef4ed83e9cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/scripts/Oven.cs using Guid(cf9da2f49aa039e4eb073ef4ed83e9cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '95d52310f12efef7e5c6d597d03e0b22') in 0.008396 seconds
-  Import took 0.010371 seconds .
+  Time since last request: 0.000171 seconds.
+  path: Assets/sprites/dish000.png
+  artifactKey: Guid(804973f0bbd5b6441acab3b277009d08) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/sprites/dish000.png using Guid(804973f0bbd5b6441acab3b277009d08) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f6ffedce3b645ad32788932aa9e54e21') in 0.010456 seconds
+  Import took 0.012793 seconds .
 
 ========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001805 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.47 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.643 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.46 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1442 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 138.2 MB.
-System memory in use after: 138.4 MB.
-
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 1900.
-Total: 1.754700 ms (FindLiveObjects: 0.155200 ms CreateObjectMapping: 0.043400 ms MarkObjects: 1.537700 ms  DeleteObjects: 0.017600 ms)
+Received Import Request.
+  Time since last request: 0.000170 seconds.
+  path: Assets/sprites/dish011.png
+  artifactKey: Guid(0cbfc928bda1d7e4387c8b38c2b842e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/sprites/dish011.png using Guid(0cbfc928bda1d7e4387c8b38c2b842e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '34bd613cf835206779425a1369d488ab') in 0.010512 seconds
+  Import took 0.012934 seconds .
 
 ========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.002375 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.46 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.628 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.46 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1442 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 138.3 MB.
-System memory in use after: 138.4 MB.
-
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 1902.
-Total: 1.938500 ms (FindLiveObjects: 0.159800 ms CreateObjectMapping: 0.047400 ms MarkObjects: 1.714300 ms  DeleteObjects: 0.016100 ms)
+Received Import Request.
+  Time since last request: 1.459677 seconds.
+  path: Assets/sprites/dish100.png
+  artifactKey: Guid(35f3926765fd9424495d125031be4931) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/sprites/dish100.png using Guid(35f3926765fd9424495d125031be4931) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '521ed75218e20a9072a93fe5c92ecfab') in 0.009598 seconds
+  Import took 0.011990 seconds .
 
 ========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.002064 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.46 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.618 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.46 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1442 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 138.3 MB.
-System memory in use after: 138.4 MB.
+Received Import Request.
+  Time since last request: 0.000142 seconds.
+  path: Assets/sprites/dish101.png
+  artifactKey: Guid(95161618962cd504f9540aab34eb20d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/sprites/dish101.png using Guid(95161618962cd504f9540aab34eb20d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7e1cea4fe47fa6811bd0f93233e3c1e0') in 0.009661 seconds
+  Import took 0.011665 seconds .
 
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 1904.
-Total: 1.680200 ms (FindLiveObjects: 0.157700 ms CreateObjectMapping: 0.042500 ms MarkObjects: 1.462500 ms  DeleteObjects: 0.016800 ms)
+========================================================================
+Received Import Request.
+  Time since last request: 0.000137 seconds.
+  path: Assets/sprites/dish111.png
+  artifactKey: Guid(c78ffa4f0e3b165418a725a1eb63f3e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/sprites/dish111.png using Guid(c78ffa4f0e3b165418a725a1eb63f3e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f66c13854887c626f704012c86cb2d4b') in 0.010002 seconds
+  Import took 0.011955 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000146 seconds.
+  path: Assets/sprites/dish110.png
+  artifactKey: Guid(29631ed6dd7f3f845968f0a8a738d0f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/sprites/dish110.png using Guid(29631ed6dd7f3f845968f0a8a738d0f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3ca8607681b8e74921c8b859cb45d3b2') in 0.008179 seconds
+  Import took 0.010059 seconds .
 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file
