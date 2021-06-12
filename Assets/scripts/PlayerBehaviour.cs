@@ -184,7 +184,7 @@ public class PlayerBehaviour : MonoBehaviour
                     {
                         dishName += "0";
                     }
-                    Debug.Log(dishName);
+
                     /*int reward = inHandO.check(counter);
 		            GameObject totalcash = GameObject.FindWithTag("TotalCash");
 		            totalcash.GetComponent<Points>().add(reward);
