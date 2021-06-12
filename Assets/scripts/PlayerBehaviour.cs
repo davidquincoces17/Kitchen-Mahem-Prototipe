@@ -5,13 +5,16 @@ using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    public FoodObject inHand;
+    public FoodObject inHand; // Food object
     public FireExtinguisher inHandFE; // fire extinguisher
-    public Order inHandO; // fire extinguisher
+    public Order inHandO; // Order
     public TimerInteraction interT;
     public GameObject timerPrefab;
     public Collider other;
-   
+
+    //public ParticleSystem healingRing;
+    //public GameObject healingRingPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -153,7 +156,36 @@ public class PlayerBehaviour : MonoBehaviour
 	            if (other.CompareTag("Counter"))
                 {
                     CounterSpace counter = other.gameObject.GetComponent<CounterSpace>();
-		            int reward = inHandO.check(counter);
+                    FoodObject[] components = counter.components;
+                    string dishName = "dish";
+                    if(components[0])
+                    {
+                        dishName += "1";
+                    } 
+                    else
+                    {
+                        dishName += "0";
+                    }
+
+                    if (components[1])
+                    {
+                        dishName += "1";
+                    }
+                    else
+                    {
+                        dishName += "0";
+                    }
+
+                    if (components[2])
+                    {
+                        dishName += "1";
+                    }
+                    else
+                    {
+                        dishName += "0";
+                    }
+                    Debug.Log(dishName);
+                    /*int reward = inHandO.check(counter);
 		            GameObject totalcash = GameObject.FindWithTag("TotalCash");
 		            totalcash.GetComponent<Points>().add(reward);
 		            Debug.Log(reward);
@@ -166,7 +198,7 @@ public class PlayerBehaviour : MonoBehaviour
 			            }
 		            }
                     Destroy(inHandO.gameObject);
-		            inHandO = null;
+		            inHandO = null;*/
                 }
 	        }
             else if (inHandFE && !inHandO)

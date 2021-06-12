@@ -6,25 +6,25 @@ using UnityEngine.EventSystems;
 
 public class Order : MonoBehaviour
 {
-int completed = 0;
+	int completed = 0;
 
-[SerializeField] public Text vegetableText;
-[SerializeField] public Text meatText;
-[SerializeField] public Text pastaText;
+	[SerializeField] public Text vegetableText;
+	[SerializeField] public Text meatText;
+	[SerializeField] public Text pastaText;
 
-[SerializeField] public Image vegetableCircle;
-[SerializeField] public Image meatCircle;
-[SerializeField] public Image pastaCircle;
+	[SerializeField] public Image vegetableCircle;
+	[SerializeField] public Image meatCircle;
+	[SerializeField] public Image pastaCircle;
 
-private int vegetableTech = 0;
-private int meatTech = 0;
-private int pastaTech = 0;
+	private int vegetableTech = 0;
+	private int meatTech = 0;
+	private int pastaTech = 0;
 
-List<string> techinques = new List<string>(new string[] {"Not wanted","Fried","Baked","Boiled"});
+	List<string> techinques = new List<string>(new string[] {"Not wanted","Fried","Baked","Boiled"});
 
-Color32[] ColorTech = new Color32[] {new Color32(0, 0, 0, 255),new Color32(200, 200, 0, 255),new Color32(255, 25, 25, 255),new Color32(0, 25, 200, 255)};
+	Color32[] ColorTech = new Color32[] {new Color32(0, 0, 0, 255),new Color32(200, 200, 0, 255),new Color32(255, 25, 25, 255),new Color32(0, 25, 200, 255)};
 
-
+	public bool done;
 
     // Start is called before the first frame update
     void Start()
