@@ -8,6 +8,7 @@ public class PlayerBehaviour : MonoBehaviour
     public FoodObject inHand; // Food object
     public FireExtinguisher inHandFE; // fire extinguisher
     public Order inHandO; // Order
+    public Dish inHandDish; // dish
     public TimerInteraction interT;
     public GameObject timerPrefab;
     public Collider other;
@@ -35,8 +36,12 @@ public class PlayerBehaviour : MonoBehaviour
 	    else if (inHandO)
         {
             inHandO.transform.position = transform.position + 15*Vector3.up;
-        } 
-	    interT.transform.position = transform.position + Vector3.up*15;
+        }
+        else if (inHandDish)
+        {
+            inHandDish.transform.position = transform.position + 15 * Vector3.up;
+        }
+        interT.transform.position = transform.position + Vector3.up*15;
 	    checkInteraction();
 	    //other = null;
 	    if(interT.state != 0)
@@ -68,7 +73,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void checkInteraction(){
 	    if(other && interT.state == 1){
-            if (!inHandFE && !inHandO)
+            if (!inHandFE && !inHandO && !inHandDish)
             {
             	if (other.CompareTag("PastaFridge") || other.CompareTag("MeatFridge") || other.CompareTag("VegetableFridge") )
             	{
@@ -138,8 +143,8 @@ public class PlayerBehaviour : MonoBehaviour
 		            if(holder.order){
                 	    if (inHand != null)
                 	    {
-                    		    Destroy(inHand.gameObject);
-                    		    inHand = null;
+                    		Destroy(inHand.gameObject);
+                    		inHand = null;
                 	    }
                 	    inHandO = holder.order;
                 	    //Debug.Log("Grabbed order");
@@ -185,22 +190,38 @@ public class PlayerBehaviour : MonoBehaviour
                         dishName += "0";
                     }
 
-                    /*int reward = inHandO.check(counter);
-		            GameObject totalcash = GameObject.FindWithTag("TotalCash");
-		            totalcash.GetComponent<Points>().add(reward);
-		            Debug.Log(reward);
-		            for(int i=0; i<3; i++)
-                    {
-			            if (counter.components[i])
-                        {
-				            Destroy(counter.components[i].gameObject);
-				            counter.components[i]=null;
-			            }
-		            }
+                    int reward = inHandO.check(counter);
+
                     Destroy(inHandO.gameObject);
-		            inHandO = null;*/
+                    inHandO = null;
+
+                    inHandDish = counter.generateDish(dishName, reward).GetComponent<Dish>();
+                    
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (counter.components[i])
+                        {
+                            Destroy(counter.components[i].gameObject);
+                            counter.components[i] = null;
+                        }
+                    }
+
+                    Debug.Log("Dish completed");
+
                 }
-	        }
+            }
+            else if (inHandDish)
+            {
+                if (other.CompareTag("ServeryCounter"))
+                {
+                    GameObject totalcash = GameObject.FindWithTag("TotalCash");
+                    totalcash.GetComponent<Points>().add(inHandDish.reward);
+
+                    Destroy(inHandDish.gameObject);
+                    inHandDish = null;
+                    Debug.Log(inHandDish.reward);
+                }
+            }
             else if (inHandFE && !inHandO)
             {
                 if (other.CompareTag("Oven"))

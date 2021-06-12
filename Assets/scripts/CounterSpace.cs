@@ -6,6 +6,8 @@ public class CounterSpace : MonoBehaviour
 {
     //public FoodObject inPreparation;
     public FoodObject [] components;
+    public GameObject dishPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,5 +18,19 @@ public class CounterSpace : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public GameObject generateDish(string dishName, int reward)
+    {
+        GameObject dish = Instantiate(dishPrefab, transform.position, dishPrefab.transform.rotation);
+        Dish finishedDish = dish.GetComponent<Dish>();
+        finishedDish.dishName = dishName;
+
+        string spritePath = "sprites/" + dishName;
+        finishedDish.dishSprite = (Sprite)Resources.Load(spritePath, typeof(Sprite));
+
+        finishedDish.reward = reward;
+        
+        return dish;
     }
 }

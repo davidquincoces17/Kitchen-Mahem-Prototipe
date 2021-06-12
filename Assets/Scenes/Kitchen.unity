@@ -325,6 +325,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6788116913067654365, guid: 92a8585f90c560b4b8fe16bbf2405ca6,
         type: 3}
+      propertyPath: m_Size.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788116913067654365, guid: 92a8585f90c560b4b8fe16bbf2405ca6,
+        type: 3}
       propertyPath: m_Center.x
       value: -0.55978
       objectReference: {fileID: 0}
@@ -357,6 +362,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 0.9999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247073004294808090, guid: 92a8585f90c560b4b8fe16bbf2405ca6,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8247073004294808090, guid: 92a8585f90c560b4b8fe16bbf2405ca6,
         type: 3}
@@ -401,6 +411,7 @@ MonoBehaviour:
   inHand: {fileID: 0}
   inHandFE: {fileID: 0}
   inHandO: {fileID: 0}
+  inHandDish: {fileID: 0}
   interT: {fileID: 0}
   timerPrefab: {fileID: 0}
   other: {fileID: 0}
@@ -419,7 +430,7 @@ GameObject:
   - component: {fileID: 230474699}
   m_Layer: 0
   m_Name: OrderCounter
-  m_TagString: Untagged
+  m_TagString: ServeryCounter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -957,6 +968,7 @@ MonoBehaviour:
   inHand: {fileID: 0}
   inHandFE: {fileID: 0}
   inHandO: {fileID: 0}
+  inHandDish: {fileID: 0}
   interT: {fileID: 0}
   timerPrefab: {fileID: 0}
   other: {fileID: 0}
@@ -1075,7 +1087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c070fee512c1cce4db4b33585251e97f, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c070fee512c1cce4db4b33585251e97f, type: 3}
       propertyPath: m_LocalScale.x
@@ -1513,6 +1525,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   components: []
+  dishPrefab: {fileID: 1850944309843165303, guid: 98fbf349587b8c6419497068cf220f6d,
+    type: 3}
 --- !u!1 &1601214843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,6 +1585,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   components: []
+  dishPrefab: {fileID: 1850944309843165303, guid: 98fbf349587b8c6419497068cf220f6d,
+    type: 3}
 --- !u!1001 &1628797998
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1653,7 +1669,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c070fee512c1cce4db4b33585251e97f, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c070fee512c1cce4db4b33585251e97f, type: 3}
       propertyPath: m_LocalScale.x
@@ -2041,6 +2057,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6788116913067654365, guid: 92a8585f90c560b4b8fe16bbf2405ca6,
         type: 3}
+      propertyPath: m_Size.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788116913067654365, guid: 92a8585f90c560b4b8fe16bbf2405ca6,
+        type: 3}
       propertyPath: m_Center.x
       value: -0.56731814
       objectReference: {fileID: 0}
@@ -2068,6 +2089,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.x
       value: 2.2429943
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247073004294808090, guid: 92a8585f90c560b4b8fe16bbf2405ca6,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8247073004294808090, guid: 92a8585f90c560b4b8fe16bbf2405ca6,
         type: 3}
@@ -2477,6 +2503,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   components: []
+  dishPrefab: {fileID: 1850944309843165303, guid: 98fbf349587b8c6419497068cf220f6d,
+    type: 3}
 --- !u!1 &2131684092
 GameObject:
   m_ObjectHideFlags: 0
@@ -2814,6 +2842,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6788116913067654365, guid: 92a8585f90c560b4b8fe16bbf2405ca6,
         type: 3}
+      propertyPath: m_Size.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788116913067654365, guid: 92a8585f90c560b4b8fe16bbf2405ca6,
+        type: 3}
       propertyPath: m_Center.x
       value: -0.50024563
       objectReference: {fileID: 0}
@@ -2852,6 +2885,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 0.9999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247073004294808090, guid: 92a8585f90c560b4b8fe16bbf2405ca6,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8247073004294808090, guid: 92a8585f90c560b4b8fe16bbf2405ca6,
         type: 3}

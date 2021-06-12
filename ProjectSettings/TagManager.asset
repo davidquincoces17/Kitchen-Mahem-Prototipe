@@ -32,6 +32,7 @@ TagManager:
   - VegetableFridge
   - OrderSpace
   - TotalCash
+  - ServeryCounter
   layers:
   - Default
   - TransparentFX
