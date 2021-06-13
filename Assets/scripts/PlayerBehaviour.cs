@@ -9,17 +9,20 @@ public class PlayerBehaviour : MonoBehaviour
     public FireExtinguisher inHandFE; // fire extinguisher
     public Order inHandO; // Order
     public Dish inHandDish; // dish
-    public TimerInteraction interT;
-    public GameObject timerPrefab;
+
     public Collider other;
 
-    //public ParticleSystem healingRing;
-    //public GameObject healingRingPrefab;
+    public TimerInteraction interT;
+    public GameObject timerPrefab;
+    public ParticleSystem healingRing;
+    public GameObject healingRingPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
-	    interT = Instantiate(timerPrefab, transform.position, timerPrefab.transform.rotation, GameObject.FindGameObjectWithTag("Canvas").transform).GetComponent<TimerInteraction>();   
+	    interT = Instantiate(timerPrefab, transform.position, timerPrefab.transform.rotation, GameObject.FindGameObjectWithTag("Canvas").transform).GetComponent<TimerInteraction>();
+
+        healingRing = Instantiate(healingRingPrefab, transform.position, healingRingPrefab.transform.rotation).GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -42,7 +45,8 @@ public class PlayerBehaviour : MonoBehaviour
             inHandDish.transform.position = transform.position + 15 * Vector3.up;
         }
         interT.transform.position = transform.position + Vector3.up*15;
-	    checkInteraction();
+        healingRing.transform.position = transform.position;
+        checkInteraction();
 	    //other = null;
 	    if(interT.state != 0)
         {
@@ -155,6 +159,29 @@ public class PlayerBehaviour : MonoBehaviour
                         Debug.Log("no order");
                     }
                 }
+
+                else if (other.CompareTag("Player1"))
+                {
+                    Debug.Log("PLAYER INTERACTION");
+
+                    PlayerBehaviour otherPlayer = other.gameObject.GetComponent<PlayerBehaviour>();
+                    if (otherPlayer.inHand && otherPlayer.inHand.state == 2)
+                    {
+                        otherPlayer.inHand.state = 1;
+                        otherPlayer.healingRing.Play();
+                    }
+                    if (this.inHand && this.inHand.state == 2)
+                    {
+                        this.inHand.state = 1;
+                        healingRing.Play();
+                    }
+                    // Exchange of aliments
+                    FoodObject temp = inHand;
+
+                    this.inHand = otherPlayer.inHand;
+                    otherPlayer.inHand = temp;
+
+                }
             } 
 	        else if (!inHandFE && inHandO)
             {
@@ -245,19 +272,7 @@ public class PlayerBehaviour : MonoBehaviour
                     }
                 }
             }
-	        if (other.CompareTag("Player1") || other.CompareTag("Player2"))
-            {
-                PlayerBehaviour otherPlayer = other.gameObject.GetComponent<PlayerBehaviour>();
-                if(otherPlayer.inHand && otherPlayer.inHand.state == 2)
-                {
-                    otherPlayer.inHand.state = 1;
-                }
-                if (this.inHand && this.inHand.state == 2)
-                {
-                    this.inHand.state = 1;
-                }
-            }
-	        interT.state=-1;
+            interT.state=-1;
 	    }
     }
 }

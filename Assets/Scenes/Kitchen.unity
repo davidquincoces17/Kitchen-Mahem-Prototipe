@@ -403,7 +403,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222202712}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d47a14664b372614cb55c970ce85a232, type: 3}
   m_Name: 
@@ -412,9 +412,11 @@ MonoBehaviour:
   inHandFE: {fileID: 0}
   inHandO: {fileID: 0}
   inHandDish: {fileID: 0}
+  other: {fileID: 0}
   interT: {fileID: 0}
   timerPrefab: {fileID: 0}
-  other: {fileID: 0}
+  healingRing: {fileID: 0}
+  healingRingPrefab: {fileID: 0}
 --- !u!1 &230474694
 GameObject:
   m_ObjectHideFlags: 0
@@ -876,6 +878,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6689930769205186729, guid: cd1cb5635f8dbe649adff6525a31cfd3,
+        type: 3}
+      propertyPath: healingRingPrefab
+      value: 
+      objectReference: {fileID: 2273021517294714941, guid: dffea10ba1f2f6f4781ad98c66286f8f,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 6056536772609992180, guid: cd1cb5635f8dbe649adff6525a31cfd3, type: 3}
     - {fileID: 686605942, guid: cd1cb5635f8dbe649adff6525a31cfd3, type: 3}
@@ -960,7 +968,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 858126533}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d47a14664b372614cb55c970ce85a232, type: 3}
   m_Name: 
@@ -969,9 +977,11 @@ MonoBehaviour:
   inHandFE: {fileID: 0}
   inHandO: {fileID: 0}
   inHandDish: {fileID: 0}
+  other: {fileID: 0}
   interT: {fileID: 0}
   timerPrefab: {fileID: 0}
-  other: {fileID: 0}
+  healingRing: {fileID: 0}
+  healingRingPrefab: {fileID: 0}
 --- !u!1 &862583626
 GameObject:
   m_ObjectHideFlags: 0
@@ -2991,6 +3001,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 261579584023122459, guid: a2aaaa094093a294aade9f5a5ce62bbb,
+        type: 3}
+      propertyPath: healingRingPrefab
+      value: 
+      objectReference: {fileID: 2273021517294714941, guid: dffea10ba1f2f6f4781ad98c66286f8f,
+        type: 3}
     - target: {fileID: 6137497490245145672, guid: a2aaaa094093a294aade9f5a5ce62bbb,
         type: 3}
       propertyPath: m_IsActive
