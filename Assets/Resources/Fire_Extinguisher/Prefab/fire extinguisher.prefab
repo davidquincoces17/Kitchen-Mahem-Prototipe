@@ -109,8 +109,8 @@ GameObject:
   - component: {fileID: 2300002}
   - component: {fileID: 6400002}
   - component: {fileID: 9500000}
-  - component: {fileID: 1882055280178974718}
   - component: {fileID: 2051841958828139518}
+  - component: {fileID: 7880220898973354184}
   m_Layer: 0
   m_Name: fire extinguisher
   m_TagString: FireExtinguisher
@@ -215,19 +215,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &1882055280178974718
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100002}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 200, y: 200, z: 1028.8116}
-  m_Center: {x: 10.24583, y: -31.04621, z: 230.8364}
 --- !u!114 &2051841958828139518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,3 +227,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6342603aa2f5df141bf5be9f0bcb5954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &7880220898973354184
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 179.03084
+  m_Center: {x: 10.2438, y: -21.039791, z: 78.105156}

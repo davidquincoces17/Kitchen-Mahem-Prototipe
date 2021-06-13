@@ -6,7 +6,7 @@ public class OrderHolder : MonoBehaviour
 {
     public Order order;
     public GameObject orderPrefab;
-    public int id;
+    //public int id;
 
     // Start is called before the first frame update
     void Start()
@@ -17,15 +17,16 @@ public class OrderHolder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-	if(transform.parent.gameObject.GetComponent<ServingSpace>().accept_new){
-        	if (transform.parent.gameObject.GetComponent<ServingSpace>().active_orders==id){
+	ServingSpace parentSpace = transform.parent.gameObject.GetComponent<ServingSpace>();
+	if(!order && parentSpace.accept_new && parentSpace.active_orders<3){
+        	//if (transform.parent.gameObject.GetComponent<ServingSpace>().active_orders==id){
 			newOrder();
-			transform.parent.gameObject.GetComponent<ServingSpace>().active_orders+=1;
-			transform.parent.gameObject.GetComponent<ServingSpace>().accept_new=false;
-			transform.parent.gameObject.GetComponent<ServingSpace>().last_order_t = Time.time;
-		}
+			parentSpace.active_orders+=1;
+			parentSpace.accept_new=false;
+			//parentSpace.wait_for_new=false;
+			parentSpace.last_order_t = Time.time;
+		//}
 	}
-	//else{Debug.Log("I couldnt");}
     }
 
     public void newOrder()

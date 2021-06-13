@@ -8,7 +8,8 @@ public class ServingSpace : MonoBehaviour
     //public OrderHolder OrderHolder2;
     //public OrderHolder OrderHolder3;
     public int active_orders = 0;
-    public bool accept_new = false;
+    public bool wait_for_new = false;
+    public bool accept_new = true;
     public float last_order_t = 0;
     public float order_delay;
 
@@ -20,7 +21,8 @@ public class ServingSpace : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-	if(Time.time-last_order_t >= order_delay && !accept_new){accept_new=true;}
-	//Debug.Log(Time.time);
+	//if(wait_for_new){
+		if(Time.time-last_order_t >= order_delay && !accept_new){accept_new=true;}
+	//}
     }
 }

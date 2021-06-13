@@ -18,10 +18,12 @@ public class FireLight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isFlickering && isActive)
-        {
-            StartCoroutine(FlickeringLight());
-        }
+        if (active_fires > 0){
+		if (!isFlickering && isActive){
+            		StartCoroutine(FlickeringLight());
+        	}
+	}
+        else{this.gameObject.GetComponent<Light>().enabled = false;}
     }
 
     IEnumerator FlickeringLight()

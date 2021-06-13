@@ -182,10 +182,14 @@ MonoBehaviour:
   inHand: {fileID: 0}
   inHandFE: {fileID: 0}
   inHandO: {fileID: 0}
+  inHandDish: {fileID: 0}
+  other: {fileID: 0}
   interT: {fileID: 0}
   timerPrefab: {fileID: 2283290125467575449, guid: 3e589e4542775de41be4272dfc387fef,
     type: 3}
-  other: {fileID: 0}
+  healingRing: {fileID: 0}
+  healingRingPrefab: {fileID: 2273021517294714941, guid: dffea10ba1f2f6f4781ad98c66286f8f,
+    type: 3}
 --- !u!1001 &5349642512159215241
 PrefabInstance:
   m_ObjectHideFlags: 0

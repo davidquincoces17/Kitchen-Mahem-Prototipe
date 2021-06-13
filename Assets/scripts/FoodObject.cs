@@ -12,7 +12,7 @@ public class FoodObject : MonoBehaviour
     public Sprite cooked;
     public Sprite burned;
 
-    Color32[] ColorTech = new Color32[] {new Color32(255, 255, 255, 255),new Color32(200, 200, 0, 255),new Color32(255, 25, 25, 255),new Color32(0, 25, 200, 255)};
+    Color32[] ColorTech = new Color32[] {new Color32(255, 255, 255, 255),new Color32(255, 255, 155, 255),new Color32(255, 155, 155, 255),new Color32(155, 155, 255, 255)};
     
     void Start()
     {

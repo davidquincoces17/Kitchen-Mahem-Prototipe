@@ -55,7 +55,7 @@ public class OvenFire : MonoBehaviour
     public void startCooking()
     {
 	    inOven.tech = tech;
-        timer = Instantiate(timerPrefab, transform.position + offset, timerPrefab.transform.rotation, GameObject.FindGameObjectWithTag("Canvas").transform).GetComponent<Timer>();
+        timer = Instantiate(timerPrefab, transform.position + offset, transform.rotation * Quaternion.Euler(0,180f,0), GameObject.FindGameObjectWithTag("Canvas").transform).GetComponent<Timer>();
         
         //Play sound
         switch (tech)

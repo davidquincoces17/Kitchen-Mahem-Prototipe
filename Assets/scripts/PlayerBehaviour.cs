@@ -17,6 +17,8 @@ public class PlayerBehaviour : MonoBehaviour
     public ParticleSystem healingRing;
     public GameObject healingRingPrefab;
 
+    public int insideSomeTrigger = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +38,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             inHand.transform.position = transform.position + 15*Vector3.up;
         } 
-	    else if (inHandO)
+	else if (inHandO)
         {
             inHandO.transform.position = transform.position + 15*Vector3.up;
         }
@@ -47,32 +49,54 @@ public class PlayerBehaviour : MonoBehaviour
         interT.transform.position = transform.position + Vector3.up*15;
         healingRing.transform.position = transform.position;
         checkInteraction();
-	    //other = null;
-	    if(interT.state != 0)
+	//other = null;
+	if(insideSomeTrigger==0)
         {
             interT.state=-1;
+	    other=null;
         }
+	//insideSomeTrigger = false;
     }
 
     private void beginInteraction(Collider c_other)
     {
 	    other = c_other;
-	    if(interT.state == -1)
-        {
+	    //interT.state = -1;	
+	    //if(interT.state == -1)
+            //{
+		//other = c_other;
                 interT.Begin(interT.Duration);
-        }
+            //}
+	    
+            if (other.CompareTag("Player1")) {
+                PlayerBehaviour otherPlayer = other.gameObject.GetComponent<PlayerBehaviour>();
+                if (otherPlayer.inHand && otherPlayer.inHand.state == 2 || this.inHand && this.inHand.state == 2){
+                        otherPlayer.healingRing.Play();
+			healingRing.Play();
+                }
+	    }
+	    else if (inHandDish && (other.CompareTag("ServeryCounter")||other.CompareTag("OrderSpace"))){
+                	healingRing.Play();
+	    }
     }
     
     private void OnTriggerEnter(Collider c_other)
     {
+	    insideSomeTrigger+=1;
 	    beginInteraction(c_other);
+	    Debug.Log(other.tag);
     }
-
+    private void OnTriggerStay(Collider c_other){
+	//insideSomeTrigger = true;
+    }
     private void OnTriggerExit(Collider c_other)
     {
-	    other = null;
-	    interT.state = -1;
-        Debug.Log("out");
+	insideSomeTrigger-=1;
+	//if(interT.state == 0){
+	    //other = null;
+	    //interT.state = -1;
+            //Debug.Log("out");
+	//}
     }
 
     private void checkInteraction(){
@@ -151,13 +175,11 @@ public class PlayerBehaviour : MonoBehaviour
                     		inHand = null;
                 	    }
                 	    inHandO = holder.order;
-                	    //Debug.Log("Grabbed order");
-                	    //Debug.Log(inHandO);
 		            }
 		            else
-                    {
-                        Debug.Log("no order");
-                    }
+                   	    {
+                       	 	Debug.Log("no order");
+                    	    }
                 }
 
                 else if (other.CompareTag("Player1"))
@@ -168,13 +190,15 @@ public class PlayerBehaviour : MonoBehaviour
                     if (otherPlayer.inHand && otherPlayer.inHand.state == 2)
                     {
                         otherPlayer.inHand.state = 1;
-                        otherPlayer.healingRing.Play();
+                        
                     }
                     if (this.inHand && this.inHand.state == 2)
                     {
                         this.inHand.state = 1;
-                        healingRing.Play();
                     }
+		    otherPlayer.healingRing.Stop();
+                    healingRing.Stop();
+	            SoundManager.Instance.PlayOrderGood(); //"Positive" sound
                     // Exchange of aliments
                     FoodObject temp = inHand;
 
@@ -232,22 +256,34 @@ public class PlayerBehaviour : MonoBehaviour
                             counter.components[i] = null;
                         }
                     }
-
+		    //ServingSpace serving_space = GameObject.FindWithTag("ServeryCounter").GetComponent<ServingSpace>();
+		    //serving_space.active_orders -= 1;
                     Debug.Log("Dish completed");
 
                 }
             }
             else if (inHandDish)
             {
-                if (other.CompareTag("ServeryCounter"))
+                if (other.CompareTag("ServeryCounter")||other.CompareTag("OrderSpace"))
                 {
                     GameObject totalcash = GameObject.FindWithTag("TotalCash");
                     totalcash.GetComponent<Points>().add(inHandDish.reward);
+			if (inHandDish.reward>10){SoundManager.Instance.PlayOrderVeryGood();}
+			else if (inHandDish.reward>5){SoundManager.Instance.PlayOrderGood();}
+			else {SoundManager.Instance.PlayOrderBad();}
+                    Debug.Log(inHandDish.reward);
 
                     Destroy(inHandDish.gameObject);
                     inHandDish = null;
-                    Debug.Log(inHandDish.reward);
+		    
+                    ServingSpace serving_space = GameObject.FindWithTag("ServeryCounter").GetComponent<ServingSpace>();
+		    serving_space.active_orders -= 1;
+		    serving_space.accept_new = false;
+		    serving_space.last_order_t = Time.time;
+			
+		    healingRing.Stop();
                 }
+		else{Debug.Log("not found counter");}
             }
             else if (inHandFE && !inHandO)
             {
@@ -255,20 +291,17 @@ public class PlayerBehaviour : MonoBehaviour
                 {
                     OvenFire fire = other.gameObject.GetComponent<OvenFire>();
 
-                    if (fire.inOven)
+                    if (fire.inOven && fire.inOven.state == 2)
                     {
-                        if (fire.inOven.state == 2)
-                        {
-                            inHand = fire.inOven;
-                            fire.inOven = null;
-                            Destroy(fire.timer.gameObject);
+                         inHand = fire.inOven;
+                         fire.inOven = null;
+                         Destroy(fire.timer.gameObject);
 
-                            // Removing smoke
-                            fire.smoke.gameObject.GetComponent<ParticleSystem>().Stop();
-                            Destroy(inHandFE.gameObject);
-                            inHandFE = null;
-                            fire.stopFire();
-                        }
+                         // Removing smoke
+                         fire.smoke.gameObject.GetComponent<ParticleSystem>().Stop();
+                         Destroy(inHandFE.gameObject);
+                         inHandFE = null;
+                         fire.stopFire();
                     }
                 }
             }

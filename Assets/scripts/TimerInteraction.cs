@@ -10,11 +10,12 @@ public class TimerInteraction : MonoBehaviour
     public float remainingDuration;
     [SerializeField] private Image uiFill;
 
-    public int state = -1;
+    public int state;
     // Start is called before the first frame update
     void Start()
     {
-        Begin(Duration);
+        state = -1;
+	uiFill.enabled = false;
     }
 
     // Update is called once per frame
