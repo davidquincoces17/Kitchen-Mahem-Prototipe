@@ -35,19 +35,19 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (inHandFE)
         {
-            inHandFE.transform.position = transform.position + 15*Vector3.up;
+            inHandFE.transform.position = transform.position + 5*Vector3.up + new Vector3(0,0,-3);
         }
         else if (inHand)
         {
-            inHand.transform.position = transform.position + 15*Vector3.up;
+            inHand.transform.position = transform.position + 14*Vector3.up;
         } 
 	else if (inHandO)
         {
-            inHandO.transform.position = transform.position + 15*Vector3.up;
+            inHandO.transform.position = transform.position + 14*Vector3.up;
         }
         else if (inHandDish)
         {
-            inHandDish.transform.position = transform.position + 15 * Vector3.up;
+            inHandDish.transform.position = transform.position + 14 * Vector3.up;
         }
         interT.transform.position = transform.position + Vector3.up*15;
         healingRing.transform.position = transform.position;
@@ -64,20 +64,47 @@ public class PlayerBehaviour : MonoBehaviour
     private void beginInteraction(Collider c_other)
     {
 	    other = c_other;
-	    //interT.state = -1;	
-	    //if(interT.state == -1)
-            //{
-		//other = c_other;
-                interT.Begin(interT.Duration);
-            //}
-	    
-            if (other.CompareTag("Player1")) {
-                PlayerBehaviour otherPlayer = other.gameObject.GetComponent<PlayerBehaviour>();
-                if (otherPlayer.inHand && otherPlayer.inHand.state == 2 || this.inHand && this.inHand.state == 2){
-                        otherPlayer.healingRing.Play();
-			healingRing.Play();
+	    if (!inHandFE && !inHandO && !inHandDish){
+            	if (other.CompareTag("PastaFridge") || other.CompareTag("MeatFridge") || other.CompareTag("VegetableFridge")){interT.Begin(interT.Duration);}
+            	
+		else if (other.CompareTag("Oven")){
+                	OvenFire fire = other.gameObject.GetComponent<OvenFire>();
+                	if (inHand){if (inHand.state == 0 && !fire.inOven){interT.Begin(interT.Duration);}}
+                	else if (fire.inOven){if (fire.inOven.state > 0 && !fire.fire.isPlaying){interT.Begin(interT.Duration);}}
                 }
-	    }
+                else if (other.CompareTag("Counter") && inHand){interT.Begin(interT.Duration);}
+
+                else if (other.CompareTag("FireExtinguisher")){interT.Begin(interT.Duration);}
+	    
+	        else if (other.CompareTag("OrderSpace")){
+		    OrderHolder holder = other.gameObject.GetComponent<OrderHolder>();
+		    if(holder.order){interT.Begin(interT.Duration);}
+                }
+
+                else if (other.CompareTag("Player1")) {
+                	PlayerBehaviour otherPlayer = other.gameObject.GetComponent<PlayerBehaviour>();
+			if (inHand || otherPlayer.inHand){interT.Begin(interT.Duration);}
+                	if (otherPlayer.inHand && otherPlayer.inHand.state == 2 || this.inHand && this.inHand.state == 2){
+                        	otherPlayer.healingRing.Play();
+				healingRing.Play();
+                	}
+	    	}
+
+                else if (other.CompareTag("Trash")){if (inHand != null){interT.Begin(interT.Duration);}}
+            } 
+
+	    else if (inHandO){if (other.CompareTag("Counter")){interT.Begin(interT.Duration);}}
+            
+	    else if (inHandDish){
+                if (other.CompareTag("ServeryCounter")){interT.Begin(interT.Duration);}
+            }
+
+            else if (inHandFE){
+                if (other.CompareTag("Oven")){
+                    OvenFire fire = other.gameObject.GetComponent<OvenFire>();
+ 		    if (fire.inOven && fire.inOven.state == 2){interT.Begin(interT.Duration);}
+                }
+            }
     }
     
     private void OnTriggerEnter(Collider c_other)

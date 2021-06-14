@@ -32,8 +32,8 @@ public class Order : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     { 	
-		timer = Instantiate(timerPrefab, transform.position + new Vector3(5, 1, 5), transform.rotation * Quaternion.Euler(0,180f,0), GameObject.FindGameObjectWithTag("Canvas").transform).GetComponent<Timer>();
-		int timeallowed = 15;
+		timer = Instantiate(timerPrefab, transform.position + new Vector3(5, 1, 5), transform.rotation, GameObject.FindGameObjectWithTag("Canvas").transform).GetComponent<Timer>();
+		int timeallowed = 25;
 		while(vegetableTech == 0 && meatTech == 0 && pastaTech == 0){
 			
 			meatTech = Random.Range(0, 3);
@@ -42,7 +42,7 @@ public class Order : MonoBehaviour
 				meatText.color = ColorTech[meatTech];
 				meatCircle.enabled = true;
 				meatCircle.color = ColorTech[meatTech];
-				timeallowed+=15;
+				timeallowed+=20;
 			}
 			else{
 				transform.GetChild(2).GetComponent<Text>().enabled = false;
@@ -56,7 +56,7 @@ public class Order : MonoBehaviour
 				pastaText.color = ColorTech[pastaTech];
 				pastaCircle.enabled = true;
 				pastaCircle.color = ColorTech[pastaTech];
-				timeallowed+=15;
+				timeallowed+=20;
 			}
 			else{
 				transform.GetChild(3).GetComponent<Text>().enabled = false;
@@ -69,7 +69,7 @@ public class Order : MonoBehaviour
 				vegetableText.color = ColorTech[vegetableTech];
 				vegetableCircle.enabled = true;
 				vegetableCircle.color = ColorTech[vegetableTech];
-				timeallowed+=15;
+				timeallowed+=20;
 			}
 			else{
 				transform.GetChild(4).GetComponent<Text>().enabled = false;
@@ -83,7 +83,7 @@ public class Order : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer && timer.state>0){
+        if (timer && timer.remainingDuration<0){
 		GameObject totalcash = GameObject.FindWithTag("TotalCash");
                     totalcash.GetComponent<Points>().add(-5);
 			SoundManager.Instance.PlayOrderBad(); 
