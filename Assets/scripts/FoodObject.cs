@@ -12,6 +12,10 @@ public class FoodObject : MonoBehaviour
     public Sprite cooked;
     public Sprite burned;
 
+    public int bonus = 0;
+
+    public Behaviour halo;
+
     Color32[] ColorTech = new Color32[] {new Color32(255, 255, 255, 255),new Color32(255, 255, 155, 255),new Color32(255, 155, 155, 255),new Color32(155, 155, 255, 255)};
     
     void Start()
@@ -29,6 +33,6 @@ public class FoodObject : MonoBehaviour
 		this.GetComponent<SpriteRenderer>().sprite = burned; 
 		this.GetComponent<SpriteRenderer>().color = new Color32(25, 25, 25, 255);
 	}
-	
+	if(bonus>0){halo.enabled = true;}
     }
 }

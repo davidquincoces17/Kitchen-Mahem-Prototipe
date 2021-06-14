@@ -358,13 +358,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073a405962a96ad45a13fedca579c36b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 0}
+  timerPrefab: {fileID: 2283290125467575449, guid: 2f608baa11cb21d468efd37407a0f0d3,
+    type: 3}
   vegetableText: {fileID: 6855821902210500597}
   meatText: {fileID: 2226561619910172073}
   pastaText: {fileID: 2028843729282597819}
   vegetableCircle: {fileID: 6676073502719138053}
   meatCircle: {fileID: 744292201199188730}
   pastaCircle: {fileID: 5269035180687549279}
-  done: 0
 --- !u!1 &2538310949915943707
 GameObject:
   m_ObjectHideFlags: 0

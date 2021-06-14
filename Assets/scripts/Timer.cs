@@ -8,7 +8,7 @@ public class Timer : MonoBehaviour
 {
     public int Duration;
     public int burnedDuration;
-    private int remainingDuration;
+    public int remainingDuration;
     private int remainingDurationBurned;
     [SerializeField] private Image uiFill;
     [SerializeField] private Text uiText;
@@ -17,16 +17,16 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Begin(Duration);
+        //Begin(Duration);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    private void Begin(int time)
+    public void Begin(int time)
     {
         state = 0;
         remainingDuration = time;

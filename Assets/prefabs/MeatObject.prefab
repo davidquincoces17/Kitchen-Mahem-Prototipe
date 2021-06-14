@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8845899895956294939}
   - component: {fileID: 1008192801843612819}
   - component: {fileID: 10980665770675505}
+  - component: {fileID: 2257560647348093940}
   m_Layer: 0
   m_Name: MeatObject
   m_TagString: Untagged
@@ -96,7 +97,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  type: 0
+  tech: 0
   raw: {fileID: 21300000, guid: d5eb5cea1de35cd40a00f6f8f40ac21d, type: 3}
   cooked: {fileID: 21300000, guid: 0ed7c459f025db645999bc0dfffcfdd6, type: 3}
   burned: {fileID: 21300000, guid: 3491e157e92e1484d8211b3c37a61b66, type: 3}
-  type: 0
+  bonus: 0
+  halo: {fileID: 2257560647348093940}
+--- !u!122 &2257560647348093940
+Halo:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850944309843165303}
+  m_Enabled: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4279294719
+  m_Size: 3

@@ -2310,7 +2310,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Total $$$:'
+  m_Text: 'Total $$$: 0'
 --- !u!222 &1768113341
 CanvasRenderer:
   m_ObjectHideFlags: 0

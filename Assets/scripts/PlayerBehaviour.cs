@@ -78,9 +78,6 @@ public class PlayerBehaviour : MonoBehaviour
 			healingRing.Play();
                 }
 	    }
-	    //else if (inHandDish && other.CompareTag("ServeryCounter")){
-            //    	sparkles.Play();
-	    //}
     }
     
     private void OnTriggerEnter(Collider c_other)
@@ -172,19 +169,18 @@ public class PlayerBehaviour : MonoBehaviour
 	    
 	        else if (other.CompareTag("OrderSpace"))
                 {
-		            OrderHolder holder = other.gameObject.GetComponent<OrderHolder>();
-		            if(holder.order){
+		    OrderHolder holder = other.gameObject.GetComponent<OrderHolder>();
+		    if(holder.order){
                 	    if (inHand != null)
                 	    {
                     		Destroy(inHand.gameObject);
                     		inHand = null;
                 	    }
-                	    inHandO = holder.order;
-		            }
-		            else
-                   	    {
-                       	 	Debug.Log("no order");
-                    	    }
+                    	inHandO = holder.order;
+			Destroy(inHandO.timer.gameObject);
+		    	holder.order = null;
+			inHandO.timer = null;	
+		    }
                 }
 
                 else if (other.CompareTag("Player1"))
@@ -209,15 +205,17 @@ public class PlayerBehaviour : MonoBehaviour
 
                     this.inHand = otherPlayer.inHand;
                     otherPlayer.inHand = temp;
+		    if(this.inHand){this.inHand.bonus+=1;}
+                    if(otherPlayer.inHand){otherPlayer.inHand.bonus+=1;}
 
                 }
                 else if (other.CompareTag("Trash"))
                 {
                     if (inHand != null)
                         {
-                        Destroy(inHand.gameObject);
-                        inHand = null;
-			SoundManager.Instance.PlayOrderBad(); //"Negative" sound
+                        	Destroy(inHand.gameObject);
+                        	inHand = null;
+				SoundManager.Instance.PlayOrderBad(); //"Negative" sound
                         }
 			
                 }
@@ -275,8 +273,16 @@ public class PlayerBehaviour : MonoBehaviour
 		    //serving_space.active_orders -= 1;
                     //Debug.Log("Dish completed");
 		    sparkles.Play();
-
                 }
+		/*else if (other.CompareTag("OrderSpace"))
+                {
+	        	OrderHolder holder = other.gameObject.GetComponent<OrderHolder>();
+		        if(!holder.order){
+                	    holder.order = inHandO;
+			    holder.order.transform.position = holder.transform.position;
+			    inHandO = null;
+			}
+                }*/
             }
             else if (inHandDish)
             {
@@ -290,9 +296,9 @@ public class PlayerBehaviour : MonoBehaviour
                     GameObject totalcash = GameObject.FindWithTag("TotalCash");
                     totalcash.GetComponent<Points>().add(inHandDish.reward);
 			if (inHandDish.reward>10){SoundManager.Instance.PlayOrderVeryGood();serving_space.makeGlow(0);}
-			else if (inHandDish.reward>5){SoundManager.Instance.PlayOrderGood();serving_space.makeGlow(0);}
+			else if (inHandDish.reward>=5){SoundManager.Instance.PlayOrderGood();serving_space.makeGlow(0);}
 			else if (inHandDish.reward>0){SoundManager.Instance.PlayOrderGood();serving_space.makeGlow(1);}
-			else {SoundManager.Instance.PlayOrderBad();serving_space.makeGlow(2);}
+			else {SoundManager.Instance.PlayOrderBad(); serving_space.makeGlow(2);}
                     
                     Destroy(inHandDish.gameObject);
                     inHandDish = null;

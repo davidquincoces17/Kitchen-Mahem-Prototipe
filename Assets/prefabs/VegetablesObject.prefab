@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8845899895956294939}
   - component: {fileID: 5151292927570409610}
   - component: {fileID: 7716452998214642984}
+  - component: {fileID: 2151047025041975948}
   m_Layer: 0
   m_Name: VegetablesObject
   m_TagString: Untagged
@@ -96,7 +97,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  type: 2
+  tech: 0
   raw: {fileID: 21300000, guid: 78a7197835fa2f5488077ceb6dacd6e0, type: 3}
   cooked: {fileID: 21300000, guid: a96c9b0c83af8924aace1e3e2d36c977, type: 3}
   burned: {fileID: 21300000, guid: 541682db5b29f1541b9612e57f5bafe7, type: 3}
-  type: 2
+  bonus: 0
+  halo: {fileID: 2151047025041975948}
+--- !u!122 &2151047025041975948
+Halo:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850944309843165303}
+  m_Enabled: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4279294719
+  m_Size: 3

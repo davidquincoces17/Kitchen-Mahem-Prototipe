@@ -7,6 +7,9 @@ using UnityEngine.EventSystems;
 public class Order : MonoBehaviour
 {
 	int completed = 0;
+	
+    	public Timer timer;
+    	public GameObject timerPrefab;	
 
 	[SerializeField] public Text vegetableText;
 	[SerializeField] public Text meatText;
@@ -24,11 +27,13 @@ public class Order : MonoBehaviour
 
 	Color32[] ColorTech = new Color32[] {new Color32(255, 255, 255, 255),new Color32(155, 155, 0, 255),new Color32(255, 155, 155, 255),new Color32(155, 155, 255, 255)};
     
-	public bool done;
+	//public bool done;
 
     // Start is called before the first frame update
     void Start()
     { 	
+		timer = Instantiate(timerPrefab, transform.position + new Vector3(5, 1, 5), transform.rotation * Quaternion.Euler(0,180f,0), GameObject.FindGameObjectWithTag("Canvas").transform).GetComponent<Timer>();
+		int timeallowed = 15;
 		while(vegetableTech == 0 && meatTech == 0 && pastaTech == 0){
 			
 			meatTech = Random.Range(0, 3);
@@ -36,7 +41,9 @@ public class Order : MonoBehaviour
 				meatText.text = techinques[meatTech];
 				meatText.color = ColorTech[meatTech];
 				meatCircle.enabled = true;
-				meatCircle.color = ColorTech[meatTech];}
+				meatCircle.color = ColorTech[meatTech];
+				timeallowed+=15;
+			}
 			else{
 				transform.GetChild(2).GetComponent<Text>().enabled = false;
 				meatText.color = new Color32(0, 0, 0, 255);
@@ -49,6 +56,7 @@ public class Order : MonoBehaviour
 				pastaText.color = ColorTech[pastaTech];
 				pastaCircle.enabled = true;
 				pastaCircle.color = ColorTech[pastaTech];
+				timeallowed+=15;
 			}
 			else{
 				transform.GetChild(3).GetComponent<Text>().enabled = false;
@@ -60,50 +68,55 @@ public class Order : MonoBehaviour
 				vegetableText.text = techinques[vegetableTech];
 				vegetableText.color = ColorTech[vegetableTech];
 				vegetableCircle.enabled = true;
-				vegetableCircle.color = ColorTech[vegetableTech];}
+				vegetableCircle.color = ColorTech[vegetableTech];
+				timeallowed+=15;
+			}
 			else{
 				transform.GetChild(4).GetComponent<Text>().enabled = false;
 				vegetableText.color = new Color32(0, 0, 0, 255);
 				vegetableCircle.enabled = false;}
+			timer.Duration = timeallowed;
+			timer.Begin(timeallowed);
 		}
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (timer && timer.state>0){
+		GameObject totalcash = GameObject.FindWithTag("TotalCash");
+                    totalcash.GetComponent<Points>().add(-5);
+			SoundManager.Instance.PlayOrderBad(); 
+			
+		ServingSpace serving_space = GameObject.FindWithTag("ServeryCounter").GetComponent<ServingSpace>();
+		    serving_space.active_orders -= 1;
+		    serving_space.accept_new = false;
+		    serving_space.last_order_t = Time.time;
+		    serving_space.makeGlow(2);
+		Destroy(timer.gameObject);
+		Destroy(this.gameObject);
+	}
     }
 
     public int check(CounterSpace dish){
  	if(dish.components[0]){
-		if(dish.components[0] && dish.components[0].tech==meatTech && dish.components[0].state==1){completed+=5;}
+		if(dish.components[0].tech==meatTech && dish.components[0].state==1){completed+=5;}
  			else if(dish.components[0].tech!=meatTech && dish.components[0].state==1){completed+=2;}
  			else {completed-=2;}
+		completed += dish.components[0].bonus;
 	}
  	if(dish.components[1]){
-		if(dish.components[1] && dish.components[1].tech==pastaTech && dish.components[1].state==1){completed+=5;}
+		if(dish.components[1].tech==pastaTech && dish.components[1].state==1){completed+=5;}
  			else if(dish.components[1].tech!=pastaTech && dish.components[1].state==1){completed+=2;}
  			else {completed-=2;}
+		completed += dish.components[1].bonus;
 	}
  	if(dish.components[2]){
 		if(dish.components[2].tech==vegetableTech && dish.components[2].state==1){completed+=5;}
  			else if(dish.components[2].tech!=vegetableTech && dish.components[2].state==1){completed+=2;}
  			else {completed-=2;}
+		completed += dish.components[2].bonus;
 	}
-
-	//Play Order Completion sound
-	// if(completed < 0)
-	// {
-	// 	SoundManager.Instance.PlayOrderBad();
-	// }
-	// else if(completed == 6)
-	// {
-	// 	SoundManager.Instance.PlayOrderVeryGood();
-	// }
-	// else
-	// {
-	// 	SoundManager.Instance.PlayOrderGood();
-	// }
 
  	return completed;
     }
