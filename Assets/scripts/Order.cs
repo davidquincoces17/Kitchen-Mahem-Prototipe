@@ -22,32 +22,49 @@ public class Order : MonoBehaviour
 
 	List<string> techinques = new List<string>(new string[] {"Not wanted","Fried","Baked","Boiled"});
 
-	Color32[] ColorTech = new Color32[] {new Color32(0, 0, 0, 255),new Color32(200, 200, 0, 255),new Color32(255, 25, 25, 255),new Color32(0, 25, 200, 255)};
-
+	Color32[] ColorTech = new Color32[] {new Color32(255, 255, 255, 255),new Color32(155, 155, 0, 255),new Color32(255, 155, 155, 255),new Color32(155, 155, 255, 255)};
+    
 	public bool done;
 
     // Start is called before the first frame update
     void Start()
     { 	
 		while(vegetableTech == 0 && meatTech == 0 && pastaTech == 0){
-			vegetableTech = Random.Range(0, 4);
-			vegetableText.text = techinques[vegetableTech];
-			vegetableCircle.color = ColorTech[vegetableTech];
-
+			
 			meatTech = Random.Range(0, 3);
-			meatText.text = techinques[meatTech];
-			meatCircle.color = ColorTech[meatTech];
+			if(meatTech!=0){
+				meatText.text = techinques[meatTech];
+				meatText.color = ColorTech[meatTech];
+				meatCircle.enabled = true;
+				meatCircle.color = ColorTech[meatTech];}
+			else{
+				transform.GetChild(2).GetComponent<Text>().enabled = false;
+				meatText.color = new Color32(0, 0, 0, 255);
+				meatCircle.enabled = false;}
 
-			pastaTech = Random.Range(0, 4);
-			if(pastaTech > 1){
+			pastaTech = Random.Range(0, 2);
+			if(pastaTech == 1){
 				pastaTech = 3;
-			}else{
-				pastaTech = 0;
-			};
-			Debug.Log(pastaTech);
-			pastaText.text = techinques[pastaTech];
-			Debug.Log(techinques[pastaTech]);
-			pastaCircle.color = ColorTech[pastaTech];
+				pastaText.text = techinques[pastaTech];
+				pastaText.color = ColorTech[pastaTech];
+				pastaCircle.enabled = true;
+				pastaCircle.color = ColorTech[pastaTech];
+			}
+			else{
+				transform.GetChild(3).GetComponent<Text>().enabled = false;
+				pastaText.color = new Color32(0, 0, 0, 255);
+				pastaCircle.enabled = false;}
+
+			vegetableTech = Random.Range(0, 4);
+			if(vegetableTech!=0){
+				vegetableText.text = techinques[vegetableTech];
+				vegetableText.color = ColorTech[vegetableTech];
+				vegetableCircle.enabled = true;
+				vegetableCircle.color = ColorTech[vegetableTech];}
+			else{
+				transform.GetChild(4).GetComponent<Text>().enabled = false;
+				vegetableText.color = new Color32(0, 0, 0, 255);
+				vegetableCircle.enabled = false;}
 		}
     }
 

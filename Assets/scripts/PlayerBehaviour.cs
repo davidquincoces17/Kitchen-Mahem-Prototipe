@@ -16,6 +16,8 @@ public class PlayerBehaviour : MonoBehaviour
     public GameObject timerPrefab;
     public ParticleSystem healingRing;
     public GameObject healingRingPrefab;
+    public ParticleSystem sparkles;
+    public GameObject sparklesPrefab;
 
     public int insideSomeTrigger = 0;
 
@@ -25,6 +27,7 @@ public class PlayerBehaviour : MonoBehaviour
 	    interT = Instantiate(timerPrefab, transform.position, timerPrefab.transform.rotation, GameObject.FindGameObjectWithTag("Canvas").transform).GetComponent<TimerInteraction>();
 
         healingRing = Instantiate(healingRingPrefab, transform.position, healingRingPrefab.transform.rotation).GetComponent<ParticleSystem>();
+	sparkles = Instantiate(sparklesPrefab, transform.position+20*Vector3.up, sparklesPrefab.transform.rotation).GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -48,6 +51,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
         interT.transform.position = transform.position + Vector3.up*15;
         healingRing.transform.position = transform.position;
+	sparkles.transform.position = transform.position+20*Vector3.up;
         checkInteraction();
 	//other = null;
 	if(insideSomeTrigger==0)
@@ -55,7 +59,6 @@ public class PlayerBehaviour : MonoBehaviour
             interT.state=-1;
 	    other=null;
         }
-	//insideSomeTrigger = false;
     }
 
     private void beginInteraction(Collider c_other)
@@ -75,9 +78,9 @@ public class PlayerBehaviour : MonoBehaviour
 			healingRing.Play();
                 }
 	    }
-	    else if (inHandDish && (other.CompareTag("ServeryCounter")||other.CompareTag("OrderSpace"))){
-                	healingRing.Play();
-	    }
+	    //else if (inHandDish && other.CompareTag("ServeryCounter")){
+            //    	sparkles.Play();
+	    //}
     }
     
     private void OnTriggerEnter(Collider c_other)
@@ -147,13 +150,15 @@ public class PlayerBehaviour : MonoBehaviour
                 else if (other.CompareTag("Counter") && inHand)
                 {
                     CounterSpace counter = other.gameObject.GetComponent<CounterSpace>();
-                    if (counter.components[inHand.type]) {Destroy(counter.components[inHand.type].gameObject);}
-                    counter.components[inHand.type] = inHand;
+		    FoodObject aux = null;
+                    if (counter.components[inHand.type]){aux = counter.components[inHand.type];}
+		    counter.components[inHand.type] = inHand;
                     counter.components[inHand.type].transform.position = counter.transform.position + new Vector3(inHand.type*7-7, 15, 0);
-                    inHand = null;
+                    if (aux){inHand = aux;}
+		    else{inHand = null;}
                 }
 
-                else if (other.CompareTag("FireExtinguisher") && !inHandO)
+                else if (other.CompareTag("FireExtinguisher"))
                 {
                     if (inHand != null)
                     {
@@ -165,7 +170,7 @@ public class PlayerBehaviour : MonoBehaviour
                     Debug.Log(inHandFE);
                 }
 	    
-	            else if (other.CompareTag("OrderSpace"))
+	        else if (other.CompareTag("OrderSpace"))
                 {
 		            OrderHolder holder = other.gameObject.GetComponent<OrderHolder>();
 		            if(holder.order){
@@ -212,12 +217,14 @@ public class PlayerBehaviour : MonoBehaviour
                         {
                         Destroy(inHand.gameObject);
                         inHand = null;
+			SoundManager.Instance.PlayOrderBad(); //"Negative" sound
                         }
+			
                 }
             } 
-	        else if (!inHandFE && inHandO)
+	    else if (inHandO)
             {
-	            if (other.CompareTag("Counter"))
+	        if (other.CompareTag("Counter"))
                 {
                     CounterSpace counter = other.gameObject.GetComponent<CounterSpace>();
                     FoodObject[] components = counter.components;
@@ -266,34 +273,35 @@ public class PlayerBehaviour : MonoBehaviour
                     }
 		    //ServingSpace serving_space = GameObject.FindWithTag("ServeryCounter").GetComponent<ServingSpace>();
 		    //serving_space.active_orders -= 1;
-                    Debug.Log("Dish completed");
+                    //Debug.Log("Dish completed");
+		    sparkles.Play();
 
                 }
             }
             else if (inHandDish)
             {
-                if (other.CompareTag("ServeryCounter")||other.CompareTag("OrderSpace"))
+                if (other.CompareTag("ServeryCounter"))
                 {
-                    GameObject totalcash = GameObject.FindWithTag("TotalCash");
-                    totalcash.GetComponent<Points>().add(inHandDish.reward);
-			if (inHandDish.reward>10){SoundManager.Instance.PlayOrderVeryGood();}
-			else if (inHandDish.reward>5){SoundManager.Instance.PlayOrderGood();}
-			else {SoundManager.Instance.PlayOrderBad();}
-                    Debug.Log(inHandDish.reward);
-
-                    Destroy(inHandDish.gameObject);
-                    inHandDish = null;
-		    
-                    ServingSpace serving_space = GameObject.FindWithTag("ServeryCounter").GetComponent<ServingSpace>();
+		    ServingSpace serving_space = GameObject.FindWithTag("ServeryCounter").GetComponent<ServingSpace>();
 		    serving_space.active_orders -= 1;
 		    serving_space.accept_new = false;
 		    serving_space.last_order_t = Time.time;
-			
-		    healingRing.Stop();
+
+                    GameObject totalcash = GameObject.FindWithTag("TotalCash");
+                    totalcash.GetComponent<Points>().add(inHandDish.reward);
+			if (inHandDish.reward>10){SoundManager.Instance.PlayOrderVeryGood();serving_space.makeGlow(0);}
+			else if (inHandDish.reward>5){SoundManager.Instance.PlayOrderGood();serving_space.makeGlow(0);}
+			else if (inHandDish.reward>0){SoundManager.Instance.PlayOrderGood();serving_space.makeGlow(1);}
+			else {SoundManager.Instance.PlayOrderBad();serving_space.makeGlow(2);}
+                    
+                    Destroy(inHandDish.gameObject);
+                    inHandDish = null;
+		    
+		    sparkles.Play();
                 }
-		    else{Debug.Log("not found counter");}
+		//else{Debug.Log("not found counter");}
             }
-            else if (inHandFE && !inHandO)
+            else if (inHandFE)
             {
                 if (other.CompareTag("Oven"))
                 {
