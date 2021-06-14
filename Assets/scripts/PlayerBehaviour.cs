@@ -35,7 +35,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (inHandFE)
         {
-            inHandFE.transform.position = transform.position + 5*Vector3.up + new Vector3(0,0,-3);
+            inHandFE.transform.position = transform.position + new Vector3(0,5,-3);
         }
         else if (inHand)
         {
@@ -64,6 +64,8 @@ public class PlayerBehaviour : MonoBehaviour
     private void beginInteraction(Collider c_other)
     {
 	    other = c_other;
+	    if (other.CompareTag("Quit")){interT.Begin(interT.Duration);}
+
 	    if (!inHandFE && !inHandO && !inHandDish){
             	if (other.CompareTag("PastaFridge") || other.CompareTag("MeatFridge") || other.CompareTag("VegetableFridge")){interT.Begin(interT.Duration);}
             	
@@ -113,21 +115,17 @@ public class PlayerBehaviour : MonoBehaviour
 	    beginInteraction(c_other);
 	    Debug.Log(other.tag);
     }
-    private void OnTriggerStay(Collider c_other){
-	//insideSomeTrigger = true;
-    }
+    
     private void OnTriggerExit(Collider c_other)
     {
 	insideSomeTrigger-=1;
-	//if(interT.state == 0){
-	    //other = null;
-	    //interT.state = -1;
-            //Debug.Log("out");
-	//}
     }
 
     private void checkInteraction(){
 	    if(other && interT.state == 1){
+	    
+	    if (other.CompareTag("Quit")){Application.Quit();}
+
             if (!inHandFE && !inHandO && !inHandDish)
             {
             	if (other.CompareTag("PastaFridge") || other.CompareTag("MeatFridge") || other.CompareTag("VegetableFridge") )
