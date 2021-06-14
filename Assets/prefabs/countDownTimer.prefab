@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce7d98cf277a6240b50de9d2c75df18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Duration: 5
+  Duration: 12
   burnedDuration: 10
   uiFill: {fileID: 7247415503677834213}
   uiText: {fileID: 3315041427366855917}

@@ -75,18 +75,18 @@ public class Order : MonoBehaviour
 	}
 
 	//Play Order Completion sound
-	if(completed < 0)
-	{
-		SoundManager.Instance.PlayOrderBad();
-	}
-	else if(completed == 6)
-	{
-		SoundManager.Instance.PlayOrderVeryGood();
-	}
-	else
-	{
-		SoundManager.Instance.PlayOrderGood();
-	}
+	// if(completed < 0)
+	// {
+	// 	SoundManager.Instance.PlayOrderBad();
+	// }
+	// else if(completed == 6)
+	// {
+	// 	SoundManager.Instance.PlayOrderVeryGood();
+	// }
+	// else
+	// {
+	// 	SoundManager.Instance.PlayOrderGood();
+	// }
 
  	return completed;
     }

@@ -206,6 +206,14 @@ public class PlayerBehaviour : MonoBehaviour
                     otherPlayer.inHand = temp;
 
                 }
+                else if (other.CompareTag("Trash"))
+                {
+                    if (inHand != null)
+                        {
+                        Destroy(inHand.gameObject);
+                        inHand = null;
+                        }
+                }
             } 
 	        else if (!inHandFE && inHandO)
             {
@@ -283,7 +291,7 @@ public class PlayerBehaviour : MonoBehaviour
 			
 		    healingRing.Stop();
                 }
-		else{Debug.Log("not found counter");}
+		    else{Debug.Log("not found counter");}
             }
             else if (inHandFE && !inHandO)
             {
@@ -305,6 +313,7 @@ public class PlayerBehaviour : MonoBehaviour
                     }
                 }
             }
+
             interT.state=-1;
 	    }
     }

@@ -33,6 +33,7 @@ TagManager:
   - OrderSpace
   - TotalCash
   - ServeryCounter
+  - Trash
   layers:
   - Default
   - TransparentFX
