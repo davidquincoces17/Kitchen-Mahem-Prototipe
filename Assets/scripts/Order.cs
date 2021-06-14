@@ -35,6 +35,9 @@ public class Order : MonoBehaviour
 		timer = Instantiate(timerPrefab, transform.position + new Vector3(5, 1, 5), transform.rotation, GameObject.FindGameObjectWithTag("Canvas").transform).GetComponent<Timer>();
 		int timeallowed = 25;
 		while(vegetableTech == 0 && meatTech == 0 && pastaTech == 0){
+			transform.GetChild(2).GetComponent<Text>().enabled = true;
+			transform.GetChild(3).GetComponent<Text>().enabled = true;
+			transform.GetChild(4).GetComponent<Text>().enabled = true;
 			
 			meatTech = Random.Range(0, 3);
 			if(meatTech!=0){
